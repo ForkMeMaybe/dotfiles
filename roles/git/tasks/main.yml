@@ -1,4 +1,36 @@
----
+- name: (git) install packages
+  tags:
+    - git
+    - packages
+  community.general.pacman:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - git
+    - openssh
+
+- name: (git) create git config
+  tags:
+    - git
+    - files
+  copy:
+    content: "{{ git_config_file }}"
+    dest: "/home/{{ ansible_user }}/.gitconfig"
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: "0644"
+
+- name: (git) create repos directory
+  tags:
+    - git
+    - files
+  ansible.builtin.file:
+    path: /home/{{ ansible_user }}/repos
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "users"
+    mode: 0755
+
 - name: (git) clone git repositories
   tags:
     - git
@@ -8,5 +40,4 @@
     dest: "{{ item.path }}"
     update: no
   loop:
-    - { repo: "{{ my_github_handle }}/GymZoid.git", path: "/home/{{ ansible_user }}/repos/GymZoid" }
-
+    - { repo: "{{ my_github_handle }}/dotfiles.git", path: "/home/{{ ansible_user }}/repos/dotfiles" }

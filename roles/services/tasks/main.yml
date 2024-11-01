@@ -7,6 +7,8 @@
     state: started
     enabled: true
     loop:
+      - bluetooth
       - pipewire
       - wireplumber
+      - NetworkManager
   
