@@ -1,0 +1,12 @@
+---
+- name: (git) clone git repositories
+  tags:
+    - git
+    - files
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ item.path }}"
+    update: no
+  loop:
+    - { repo: "{{ my_github_handle }}/GymZoid.git", path: "/home/{{ ansible_user }}/repos/GymZoid" }
+

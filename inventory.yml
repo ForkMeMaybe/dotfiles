@@ -1,0 +1,8 @@
+---
+linux: # group
+  hosts:
+    system:
+      ansible_user: odd
+      ansible_host: localhost
+      ansible_connection: local
+
