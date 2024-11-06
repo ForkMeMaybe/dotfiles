@@ -116,8 +116,8 @@ keys = [
 
 
     # Keyboard Brightness
-    Key([], "F2", lazy.spawn("bash -c 'echo 0 > /sys/class/leds/asus::kbd_backlight/brightness'"), desc="Turn keyboard backlight down"),
-    Key([], "F3", lazy.spawn("bash -c 'echo 1 > /sys/class/leds/asus::kbd_backlight/brightness'"), desc="Turn keyboard backlight up"),
+    Key([], "F2", lazy.spawn("bash -c 'echo 0 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-off.png " "'"), desc="Turn keyboard backlight down"),
+    Key([], "F3", lazy.spawn("bash -c 'echo 1 > /sys/class/leds/asus::kbd_backlight/brightness' && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-on.png " ""), desc="Turn keyboard backlight up"),
 
     # Thunar
     Key([mod], "e", lazy.spawn("thunar"), desc="Open Thunar file manager"),
