@@ -11,4 +11,5 @@
       - pipewire
       - wireplumber
       - NetworkManager
+      - betterlockscreen@"{{ ansible_user }}"
   

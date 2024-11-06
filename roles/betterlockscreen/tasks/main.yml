@@ -1,0 +1,28 @@
+- name: (betterlockscreen) Install betterlocscreen using yay
+  become: false
+  tags:
+    - betterlockscreen
+    - packages
+  command: yay -S --noconfirm betterlockscreen
+
+- name: (betterlockscreen) copy config files
+  tags:
+    - betterlockscreen
+    - files
+  ansible.builtin.copy:
+    src: betterlockscreen
+    dest: /home/{{ ansible_user }}/.config/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the file owner can read and write the file, but other users can only read it
+
+- name: (betterlockscreen) save config files
+  tags:
+    - save
+    - save-betterlockscreen
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/.config/betterlockscreen
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/betterlockscreen/files/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the file owner can read and write the file, but other users can only read it

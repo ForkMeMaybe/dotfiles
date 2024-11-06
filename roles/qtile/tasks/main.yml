@@ -9,14 +9,14 @@
     - qtile
     - python-psutil
 
-- name: Install qtile-extras, light using yay
+- name: (qtile) Install qtile-extras, light using yay
   become: false
   tags:
     - qtile
     - packages
   command: yay -S --noconfirm qtile-extras light
 
-- name: Remove cloned yay repository
+- name:(qtile)  Remove cloned yay repository
   become: false
   tags:
     - qtile
