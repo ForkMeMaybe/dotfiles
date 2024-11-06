@@ -8,7 +8,7 @@
     dest: /home/{{ ansible_user }}/.bash_profile
     group: "users"
     owner: "{{ ansible_user }}"
-    mode: 0755
+    mode: 0644 # the owner can read and write the file, but other users can only read it
 
 - name: (bash) save config files
   become: false
@@ -20,7 +20,7 @@
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/bash/files/{{ item }}
     group: "users"
     owner: "{{ ansible_user }}"
-    mode: 0755
+    mode: 0644 # the owner can read and write the file, but other users can only read it
   loop:
     - .bash_profile
     - .bashrc

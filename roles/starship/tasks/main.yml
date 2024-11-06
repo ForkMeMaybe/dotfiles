@@ -19,7 +19,7 @@
     dest: "/home/{{ ansible_user }}/.config/starship.toml"
     group: "users"
     owner: "{{ ansible_user }}"
-    mode: 0644
+    mode: 0644 # the owner can read and write the file, but other users can only read it
   when: config_version is defined and config_version != ""
 
 
@@ -33,7 +33,7 @@
     dest: /home/{{ ansible_user }}/.config/starship.toml
     group: "users"
     owner: "{{ ansible_user }}"
-    mode: 0644
+    mode: 0644 # the owner can read and write the file, but other users can only read it
   when: config_version is not defined or config_version == ""
 
 - name: (starship) save files
@@ -46,4 +46,4 @@
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/starship/files/starship.toml
     group: "users"
     owner: "{{ ansible_user }}"
-    mode: 0644
+    mode: 0644 # the owner can read and write the file, but other users can only read it

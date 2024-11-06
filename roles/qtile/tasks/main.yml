@@ -36,7 +36,7 @@
     dest: /home/{{ ansible_user }}/.config
     group: "users"
     owner: "{{ ansible_user }}"
-    mode: 0755
+    mode: 0755 # the owner of a file or directory can read, write, and execute it, while other users can only read and execute it
 
 - name: (qtile) save config files
   become: false
@@ -48,5 +48,5 @@
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/qtile/files/
     owner: "{{ ansible_user }}"
     group: "users"
-    mode: 0755
+    mode: 0755 # the owner of a file or directory can read, write, and execute it, while other users can only read and execute it
 

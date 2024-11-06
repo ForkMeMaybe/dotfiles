@@ -8,7 +8,7 @@
     dest: /home/{{ ansible_user }}/.asoundrc
     group: "users"
     owner: "{{ ansible_user }}"
-    mode: 0755
+    mode: 0644 # the owner can read and write the file, but other users can only read it
 
 - name: (alsa) save .asoundrc
   become: false
@@ -20,6 +20,4 @@
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/alsa/files/.asoundrc
     owner: "{{ ansible_user }}"
     group: "users"
-    mode: 0644
-
-
+    mode: 0644 # the owner can read and write the file, but other users can only read it
