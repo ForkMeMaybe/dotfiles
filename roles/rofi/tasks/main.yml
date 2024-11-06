@@ -1,0 +1,31 @@
+- name: (rofi) install packages
+  tags:
+    - rofi
+    - packages
+  community.general.pacman:
+    name: rofi
+    state: latest
+
+- name: (rofi) copy config files
+  become: false
+  tags:
+    - rofi
+    - files
+  ansible.builtin.copy:
+    src: rofi
+    dest: /home/{{ ansible_user }}/.config/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755
+
+- name: (rofi) save config files
+  become: false
+  tags:
+    - save
+    - save-rofi
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/.config/rofi
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/rofi/files/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755

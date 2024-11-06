@@ -1,0 +1,33 @@
+- name: (alacritty) install packages
+  tags:
+    - alacritty
+    - packages
+  community.general.pacman:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - alacritty
+
+- name: (alacritty) copy config files
+  become: false
+  tags:
+    - alacritty
+    - files
+  ansible.builtin.copy:
+    src: alacritty
+    dest: /home/{{ ansible_user }}/.config/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755
+
+- name: (alacritty) save config files
+  become: false
+  tags:
+    - save
+    - save-alacritty
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/.config/alacritty
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/alacritty/files/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755

@@ -1,0 +1,25 @@
+- name: (alsa) copy .asoundrc
+  become: false
+  tags:
+    - alsa
+    - files
+  ansible.builtin.copy:
+    src: .asoundrc
+    dest: /home/{{ ansible_user }}/.asoundrc
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755
+
+- name: (alsa) save .asoundrc
+  become: false
+  tags:
+    - save
+    - save-alsa
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/.asoundrc
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/alsa/files/.asoundrc
+    owner: "{{ ansible_user }}"
+    group: "users"
+    mode: 0644
+
+

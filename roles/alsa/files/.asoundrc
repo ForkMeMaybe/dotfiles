@@ -1,0 +1,17 @@
+# Make Card 2 as the default sound card
+defaults.pcm.card 2
+defaults.ctl.card 2
+
+# Route ALSA audio through PipeWire. Making pipewire default for all apllications
+pcm.!default {
+    type plug
+    slave.pcm {
+        type pipewire
+    }
+}
+ctl.!default {
+    type pipewire
+}
+
+
+

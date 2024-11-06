@@ -1,0 +1,49 @@
+- name: (starship) install package
+  tags:
+    - starship
+    - packages
+  community.general.pacman:
+    name: starship
+    state: latest
+  when: config_version is not defined or config_version == ""
+
+- name: (starship) copy selected config file
+  become: false
+  tags:
+    - starship
+    - files
+  vars:
+    starship_config_file: "starship-{{ config_version | default('') }}.toml"
+  ansible.builtin.copy:
+    src: "/home/{{ ansible_user }}/repos/dotfiles/roles/starship/files/{{ starship_config_file }}"
+    dest: "/home/{{ ansible_user }}/.config/starship.toml"
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644
+  when: config_version is defined and config_version != ""
+
+
+- name: (starship) copy files
+  become: false
+  tags:
+    - starship
+    - files
+  ansible.builtin.copy:
+    src: starship.toml
+    dest: /home/{{ ansible_user }}/.config/starship.toml
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644
+  when: config_version is not defined or config_version == ""
+
+- name: (starship) save files
+  become: false
+  tags:
+    - save
+    - save-starship
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/.config/starship.toml
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/starship/files/starship.toml
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644

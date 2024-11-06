@@ -1,0 +1,14 @@
+- name: (services) start services
+  tags:
+    - services
+    - system
+  community.general.runit:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+    loop:
+      - bluetooth
+      - pipewire
+      - wireplumber
+      - NetworkManager
+  

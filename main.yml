@@ -1,0 +1,20 @@
+---
+- hosts: all
+  roles:
+    - base
+    - services
+    - git
+    - ssh
+    - xorg
+    - picom
+    - bash
+    - alsa
+    - yay
+    - qtile
+    - alacritty
+    - starship
+    - rofi
+    - dunst
+    - neovim
+    - wallpapers
+

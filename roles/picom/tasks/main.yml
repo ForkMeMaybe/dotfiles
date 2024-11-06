@@ -1,0 +1,31 @@
+- name: (picom) install package
+  tags:
+    - picom
+    - packages
+  community.general.pacman:
+    name: picom
+    state: latest
+
+- name: (picom) copy picom.conf
+  become: false
+  tags:
+    - picom
+    - files
+  ansible.builtin.copy:
+    src: picom
+    dest: /home/{{ ansible_user }}/.config/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755
+
+- name: (picom) save picom
+  become: false
+  tags:
+    - save
+    - save-picom
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/.config/picom
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/picom/files/
+    owner: "{{ ansible_user }}"
+    group: "users"
+    mode: 0755

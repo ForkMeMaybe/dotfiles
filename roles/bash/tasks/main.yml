@@ -1,0 +1,26 @@
+- name: (bash) copy config files
+  become: false
+  tags:
+    - bash
+    - files
+  ansible.builtin.copy:
+    src: .bash_profile
+    dest: /home/{{ ansible_user }}/.bash_profile
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755
+
+- name: (bash) save config files
+  become: false
+  tags:
+    - save
+    - save-bash
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/{{ item }}
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/bash/files/{{ item }}
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755
+  loop:
+    - .bash_profile
+    - .bashrc

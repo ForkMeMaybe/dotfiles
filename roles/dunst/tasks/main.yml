@@ -1,0 +1,31 @@
+- name: (dunst) install package
+  tags:
+    - dunst
+    - packages
+  community.general.pacman:
+    name: dunst
+    state: latest
+
+- name: (dunst) copy config files
+  become: false
+  tags:
+    - dunst
+    - files
+  ansible.builtin.copy:
+    src: dunst
+    dest: /home/{{ ansible_user }}/.config
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755
+
+- name: (dunst) save config file
+  become: false
+  tags:
+    - save
+    - save-dunst
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/.config/dunst
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/dunst/files/
+    owner: "{{ ansible_user }}"
+    group: "users"
+    mode: 0755

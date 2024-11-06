@@ -1,0 +1,28 @@
+- name: (base) install packages
+  tags:
+    - base
+    - packages
+  community.general.pacman:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - ansible
+    - firefox
+    - flameshot
+    - htop
+    - light
+    - nano
+    - networkmanager
+    - nitrogen
+    - ntfs-3g
+    - os-prober
+    - pipewire
+    - pipewire-alsa
+    - wireplumber
+    - bluez
+    - bluez-utils
+    - sof-firmware
+    - sudo
+    - thunar
+    - python-watchdog
+    - base-devel

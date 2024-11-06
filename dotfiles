@@ -1,0 +1,58 @@
+#!/bin/env bash
+
+function init_archlinux() {
+    # install basic system packages
+    sudo pacman --noconfirm -Syu ansible python-watchdog neovim openssh git
+}
+
+function init() {
+    # check for distro in /etc/os-release file
+    if grep -q "^NAME=\"Arch Linux\"" /etc/os-release; then
+        init_archlinux
+    else
+        echo "distro not supported" && exit 1
+    fi
+}
+
+function clone_dotfiles() {
+    mkdir -p "$HOME/repos" && cd "$HOME/repos"
+    [ ! -d "$HOME/repos/dotfiles" ] && git clone git@github.com:ForkMeMaybe/dotfiles.git "$HOME/repos/dotfiles"
+    cd "$HOME/repos/dotfiles"
+}
+
+function run_ansible_tasks_with_tag() {
+    if ! command -v ansible-playbook &>/dev/null; then
+        init
+    fi
+
+    # setup dotfiles repository
+    clone_dotfiles
+
+    # run the ansible-playbook command with config_version if provided
+    if [ -n "$2" ]; then
+        ansible-playbook main.yml \
+            --tags "${1}" \
+            -e "config_version=${2}"
+    else
+        ansible-playbook main.yml \
+            --tags "${@}" \
+            --become --ask-become-pass \
+            --ask-vault-pass
+    fi
+}
+
+function run_ansible_save_task() {
+    # Run ansible-playbook with the save tag
+    clone_dotfiles
+    ansible-playbook main.yml \
+        --tags "${@}"
+}
+
+case "$1" in 
+    "init")     init;;
+    "full"|"")  run_ansible_tasks_with_tag include,files,packages,system;;
+    "save-"*)   run_ansible_save_task "${@}";;
+    "starship") run_ansible_tasks_with_tag "starship" "$2";;
+    *)          run_ansible_tasks_with_tag include,"${@}";;
+esac
+
