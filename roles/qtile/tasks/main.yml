@@ -16,7 +16,7 @@
     - packages
   command: yay -S --noconfirm qtile-extras light
 
-- name:(qtile)  Remove cloned yay repository
+- name: (qtile)  Remove cloned yay repository
   become: false
   tags:
     - qtile
