@@ -35,6 +35,7 @@ from qtile_extras import widget
 from qtile_extras.widget.decorations import BorderDecoration
 
 mod = "mod4"
+mod1 = "mod1"
 terminal = "alacritty"
 
 # A function for hide/show all the windows in a group
@@ -127,9 +128,11 @@ keys = [
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Open rofi drun mode"),
     #Key([mod], "b", lazy.spawn(os.path.expanduser("~/.config/rofi/applets/bin/powermenu.sh")), desc="Brightness control")
 
+    # Run save_dotfiles.sh script
     Key([mod, "shift"], "s", lazy.spawn("/home/odd/repos/dotfiles/save_dotfiles.sh")),
 
-    Key([mod], "l", lazy.spawn("betterlockscreen -l")),
+    # Better Lock Screeb
+    Key([mod1], "l", lazy.spawn("betterlockscreen -l")),
 ]
 
 # Add key bindings to switch VTs in Wayland.
