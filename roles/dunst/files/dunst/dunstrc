@@ -64,13 +64,13 @@
     background = "#1E1E2E"              # Background color for low urgency notifications
     foreground = "#9ACF69"              # Text color for low urgency notifications
     frame_color = "#9ACF69"             # Frame color for low urgency notifications
-    timeout = 10                         # Duration before low urgency notification closes
+    timeout = 6                         # Duration before low urgency notification closes
 
 [urgency_normal]
     background = "#1E1E2E"              # Background color for normal urgency notifications
     foreground = "#74C7EC"              # Text color for normal urgency notifications
     frame_color = "#74C7EC"             # Frame color for normal urgency notifications
-    timeout = 10                         # Duration before normal urgency notification closes
+    timeout = 6                         # Duration before normal urgency notification closes
 
 [urgency_critical]
     background = "#1E1E2E"              # Background color for critical urgency notifications
