@@ -21,6 +21,8 @@ time=4000 # Time in ms (milliseconds)
 while true; do
     percentage=$(cat /sys/class/power_supply/BAT0/capacity)
     charging=$(cat /sys/class/power_supply/BAT0/status)
+   
+    dunstctl close-all
 
     if [ "$charging" != "Charging" ]; then
         # If the battery is not charging

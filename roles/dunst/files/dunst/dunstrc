@@ -27,6 +27,7 @@
         word_wrap = yes                # Enable word wrapping
         ignore_newline = no            # Treat newlines as regular characters
         stack_duplicates = true        # Stack duplicate notifications
+	hide_duplicate_count = true   # hide duplicate count
 
         # Icon Settings
         icon_position = left           # Position of the icon in notifications
@@ -36,7 +37,7 @@
         padding = 5                    # Padding around notifications
         # gaps = true                  # Enable gaps between notifications (commented out)
         gap_size = 7                   # Size of the gap between notifications
-        horizontal_padding = 2          # Horizontal padding within notifications
+        horizontal_padding = 10          # Horizontal padding within notifications
         text_icon_padding = 5           # Padding between text and icon
         # transparency = 5             # Notification transparency (commented out)
         # separator = true              # Enable separator (commented out)

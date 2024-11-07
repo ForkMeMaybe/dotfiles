@@ -114,10 +114,10 @@ keys = [
     # Brightness up (F8 key)
     Key([mod], "F8", lazy.spawn("light -A 5")),
 
-
     # Keyboard Brightness
-    Key([], "F2", lazy.spawn("bash -c 'echo 0 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-off.png " "'"), desc="Turn keyboard backlight down"),
-    Key([], "F3", lazy.spawn("bash -c 'echo 1 > /sys/class/leds/asus::kbd_backlight/brightness' && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-on.png " ""), desc="Turn keyboard backlight up"),
+    Key([], "F2", lazy.spawn("bash -c 'echo 0 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-off.png \" \"'"), desc="Turn keyboard backlight down"),
+    Key([], "F3", lazy.spawn("bash -c 'echo 1 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-on.png \" \"'"), desc="Turn keyboard backlight up"),
+
 
     # Thunar
     Key([mod], "e", lazy.spawn("thunar"), desc="Open Thunar file manager"),
@@ -128,6 +128,8 @@ keys = [
     #Key([mod], "b", lazy.spawn(os.path.expanduser("~/.config/rofi/applets/bin/powermenu.sh")), desc="Brightness control")
 
     Key([mod, "shift"], "s", lazy.spawn("/home/odd/repos/dotfiles/save_dotfiles.sh")),
+
+    Key([mod], "l", lazy.spawn("betterlockscreen -l")),
 ]
 
 # Add key bindings to switch VTs in Wayland.
