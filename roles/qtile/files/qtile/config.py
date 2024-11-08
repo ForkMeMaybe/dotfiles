@@ -110,10 +110,10 @@ keys = [
     # Mute/Unmute
     #Key([], "XF86AudioMute", lazy.spawn("amixer -c 2 set 'Master' toggle")),
 
-     # Brightness down (F7 key)
-    Key([mod], "F7", lazy.spawn("light -U 5")),  
-    # Brightness up (F8 key)
-    Key([mod], "F8", lazy.spawn("light -A 5")),
+    # Brightness down (F7 key)
+    Key([], "F7", lazy.spawn("bash -c 'light -U 5 && notify-send -u normal -i /home/odd/.config/dunst/icons/brightness-decrease.png \" \"'"), desc="Turn keyboard backlight down"),
+    # Brightness up (F9 Key)
+    Key([], "F8", lazy.spawn("bash -c 'light -A 5 && notify-send -u normal -i /home/odd/.config/dunst/icons/brightness-increase.png \" \"'"), desc="Turn keyboard backlight down"),
 
     # Keyboard Brightness
     Key([], "F2", lazy.spawn("bash -c 'echo 0 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-off.png \" \"'"), desc="Turn keyboard backlight down"),
@@ -331,33 +331,33 @@ screens = [
                  max_chars = 40,
                  fontsize = 16
                  ),
-		widget.TextBox(
-                    text="❤",
-                    background="#00000000",
-                    font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
-                    fontsize=20,
-                    foreground=colors[3],
-                    decorations=[
-                     BorderDecoration(
-                         colour = colors[3],
-                         border_width = [0, 0, 2, 0],
-                     )
-                ],
-                ),
-                widget.GenPollText(
-		 background="#00000000",
-                 fontsize = 15,
-                 update_interval = 300,
-                 func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
-                 foreground = colors[3],
-                 fmt = ' {}',
-                 decorations=[
-                     BorderDecoration(
-                         colour = colors[3],
-                         border_width = [0, 0, 2, 0],
-                     )
-                 ],
-                 ),
+		# widget.TextBox(
+		#                   text="❤",
+		#                   background="#00000000",
+		#                   font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
+		#                   fontsize=20,
+		#                   foreground=colors[3],
+		#                   decorations=[
+		#                    BorderDecoration(
+		#                        colour = colors[3],
+		#                        border_width = [0, 0, 2, 0],
+		#                    )
+		#               ],
+		#               ),
+                #widget.GenPollText(
+		 #background="#00000000",
+                 # fontsize = 15,
+                 # update_interval = 300,
+                 # func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
+                 # foreground = colors[3],
+                 # fmt = ' {}',
+                 # decorations=[
+                 #     BorderDecoration(
+                 #         colour = colors[3],
+                 #         border_width = [0, 0, 2, 0],
+                 #     )
+                 # ],
+                 # ),
               widget.Spacer(length = 9, background="#00000000",),
 	      widget.TextBox(
                     text=" ",
