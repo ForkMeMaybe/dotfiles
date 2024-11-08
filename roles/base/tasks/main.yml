@@ -25,3 +25,5 @@
     - thunar
     - python-watchdog
     - base-devel
+    - xclip
+    - xsel
