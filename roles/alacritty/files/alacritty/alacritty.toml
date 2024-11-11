@@ -8,7 +8,7 @@ title = "Alacritty"
 
 [cursor]
 style = "underline"        # Supported => ▇ Block, _ Underline, | Beam
-vi_mode_style = "Beam"     # Only applicable when in vi mode
+vi_mode_style = "underline"     # Only applicable when in vi mode
 
 [selection]
 save_to_clipboard = true
