@@ -8,6 +8,8 @@
   loop:
     - neovim
     - ripgrep
+    - unzip
+    - npm
 
 - name: (neovim) copy config files
   become: false
