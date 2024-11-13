@@ -475,30 +475,44 @@ screens = [
                  ),
                 widget.Spacer(length = 9, background="#00000000",),
 		widget.TextBox(
-                    text="⌨",
+                    text="  ",
                     background="#00000000",
                     font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
                     fontsize=20,
                     foreground=colors[4],
                     decorations=[
                      BorderDecoration(
-                         colour = colors[4],
-                         border_width = [0, 0, 2, 0],
-                     )
-                ],
-                ),
-                widget.KeyboardLayout(
-		 background="#00000000",
-                 fontsize = 15,
-                 foreground = colors[4],
-                 fmt = ' KBD: {}',
-                 decorations=[
+                        colour = colors[4],
+                        border_width = [0, 0, 2, 0],
+                    )
+               ],
+               ),
+		widget.Net(
+		    foreground = colors[4],
+                    background = "#00000000",
+                    font = 'Iosevka Nerd Font',
+                    fontsize = 15,
+                    format='{down:.0f}{down_suffix} ↓↑ {up:.0f}{up_suffix}',
+                    interface = 'wlp3s0',
+		    decorations=[
                      BorderDecoration(
                          colour = colors[4],
                          border_width = [0, 0, 2, 0],
                      )
-                 ],
-                 ),
+                    ],
+                ),
+                #widget.KeyboardLayout(
+		# background="#00000000",
+                # fontsize = 15,
+                # foreground = colors[4],
+                # fmt = ' KBD: {}',
+                # decorations=[
+                #     BorderDecoration(
+                #         colour = colors[4],
+                #         border_width = [0, 0, 2, 0],
+                #     )
+                # ],
+                # ),
                 widget.Spacer(length = 9, background="#00000000",),
 		widget.TextBox(
                     text=" ",
