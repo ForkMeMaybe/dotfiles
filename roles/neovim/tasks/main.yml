@@ -10,6 +10,7 @@
     - ripgrep
     - unzip
     - npm
+    - wget
 
 - name: (neovim) copy config files
   become: false

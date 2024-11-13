@@ -9,7 +9,7 @@
     - ansible
     - firefox
     - flameshot
-    - htop
+    - btop
     - nano
     - networkmanager
     - nitrogen
