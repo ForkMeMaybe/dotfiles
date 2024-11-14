@@ -5,3 +5,4 @@ nitrogen --restore
 picom &
 dunst &
 ~/.config/qtile/battery_monitor.sh &
+~/.config/qtile/clean_mpv_thumbs_cache.sh &
