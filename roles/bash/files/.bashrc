@@ -11,3 +11,6 @@ PS1='[\u@\h \W]\$ '
 
 # initialize starship
 eval "$(starship init bash)"
+
+# Default cache location
+export XDG_CACHE_HOME="$HOME/.cache"
