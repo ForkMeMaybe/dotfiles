@@ -22,7 +22,8 @@
     dest: /home/{{ ansible_user }}/.config
     group: "users"
     owner: "{{ ansible_user }}"
-    mode: 0755
+    mode: 0644 # the owner can read and write the file, but other users can only read it
+
 
 - name: (neovim) save config files
   become: false
@@ -34,4 +35,4 @@
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/neovim/files
     group: "users"
     owner: "{{ ansible_user }}"
-    mode: 0755
+    mode: 0644    # the owner can read and write the file, but other users can only read it
