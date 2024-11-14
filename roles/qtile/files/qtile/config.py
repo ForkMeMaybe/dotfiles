@@ -45,6 +45,12 @@ def minimize_all(qtile):
         if hasattr(win, "toggle_minimize"):
             win.toggle_minimize()
 
+# Define a function to close all windows in a specified workspace
+def close_all_windows_in_workspace(qtile, workspace_name):
+    group = qtile.groups_map.get(workspace_name)
+    if group:
+        for window in group.windows:
+            window.kill()
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -131,8 +137,27 @@ keys = [
     # Run save_dotfiles.sh script
     Key([mod, "shift"], "s", lazy.spawn("/home/odd/repos/dotfiles/save_dotfiles.sh")),
 
-    # Better Lock Screeb
+    # Better Lock Screen
     Key([mod1], "l", lazy.spawn("betterlockscreen -l")),
+
+    # Close all windows in workspace "1"
+    Key([mod1, "shift"], "1",lazy.function(close_all_windows_in_workspace, "1"),desc="Close all windows in workspace 1"),
+    # Close all windows in workspace "2"
+    Key([mod1, "shift"], "2",lazy.function(close_all_windows_in_workspace, "2"),desc="Close all windows in workspace 2"),
+    # Close all windows in workspace "3"
+    Key([mod1, "shift"], "3",lazy.function(close_all_windows_in_workspace, "3"),desc="Close all windows in workspace 3"),
+    # Close all windows in workspace "4"
+    Key([mod1, "shift"], "4",lazy.function(close_all_windows_in_workspace, "4"),desc="Close all windows in workspace 4"),
+    # Close all windows in workspace "5"
+    Key([mod1, "shift"], "5",lazy.function(close_all_windows_in_workspace, "5"),desc="Close all windows in workspace 5"),
+    # Close all windows in workspace "6"
+    Key([mod1, "shift"], "6",lazy.function(close_all_windows_in_workspace, "6"),desc="Close all windows in workspace 6"),
+    # Close all windows in workspace "7"
+    Key([mod1, "shift"], "7",lazy.function(close_all_windows_in_workspace, "7"),desc="Close all windows in workspace 7"),
+    # Close all windows in workspace "8"
+    Key([mod1, "shift"], "8",lazy.function(close_all_windows_in_workspace, "8"),desc="Close all windows in workspace 8"),
+    # Close all windows in workspace "9"
+    Key([mod1, "shift"], "9",lazy.function(close_all_windows_in_workspace, "9"),desc="Close all windows in workspace 9"),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -572,8 +597,9 @@ screens = [
             ],
             24,
             background="#00000000",
+            #background = "#251959",
             #border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            #border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
