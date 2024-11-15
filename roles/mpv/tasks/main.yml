@@ -1,0 +1,35 @@
+- name: (mpv) install packages
+  tags:
+    - mpv
+    - packages
+  community.general.pacman:
+    name: "{{ item }}"
+    state: latest
+  loop:
+    - mpv
+
+- name: (mpv) copy config files
+  become: false
+  tags:
+    - mpv
+    - files
+  ansible.builtin.copy:
+    src: mpv
+    dest: /home/{{ ansible_user }}/.config
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the owner can read and write the file, but other users can only read it
+
+
+- name: (mpv) save config files
+  become: false
+  tags:
+    - save
+    - save-mpv
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/.config/mpv
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/mpv/files
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644    # the owner can read and write the file, but other users can only read it
+
