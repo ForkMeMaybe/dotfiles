@@ -25,25 +25,21 @@ while true; do
     if [ "$charging" != "Charging" ]; then
         # If the battery is not charging
         if [ $percentage -le 20 ] && [ $low_battery_flag -eq 1 ]; then
-	    dunstctl close-all
             notify-send -u critical -i "$low_battery_icon" "Low Battery" "$percentage%"
             low_battery_flag=0
         fi
     else
         # If the battery is charging
         if [ $i -eq 0 ]; then
-	    dunstctl close-all
             notify-send -u low -i "$charging_icon" "$percentage%" "Charging"
             i=1
         fi
 
         if [ $percentage -eq 60 ]; then
-	    dunstctl close-all
             notify-send -u normal -i "$battery_at_60_icon" "Battery At" "$percentage%"
         fi
 
         if [ $percentage -ge 90 ]; then
-	    dunstctl close-all
             notify-send -u critical -i "$full_battery_icon" "High Battery" "$percentage%"
         fi
     fi
@@ -55,7 +51,6 @@ while true; do
 
     # Check for charging status change
     if [ "$charging" != "Charging" ] && [ $i -eq 1 ]; then
-	dunstctl close-all
         notify-send -u low -i "$discharging_icon" "$percentage%" "Discharging"
         i=0
     fi

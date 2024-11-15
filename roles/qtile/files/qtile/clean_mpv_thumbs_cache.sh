@@ -15,8 +15,7 @@ if [ ! -d "$cache_directory" ]; then
 fi
 
 # Maximum allowed cache size in bytes (e.g., 50MB = 50 * 1024 * 1024)
-#max_cache_size=$((50 * 1024 * 1024))
-max_cache_size=1000  # Set a small value to trigger cleanup
+max_cache_size=$((50 * 1024 * 1024))
 
 # Function to calculate directory size
 get_cache_size() {
