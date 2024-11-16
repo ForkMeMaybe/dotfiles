@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 
 icondir="$HOME/.config/dunst/icons"
 low_battery_icon="$icondir/battery-low.png"
@@ -31,6 +31,7 @@ while true; do
     else
         # If the battery is charging
         if [ $i -eq 0 ]; then
+            dunstctl close
             notify-send -u low -i "$charging_icon" "$percentage%" "Charging"
             i=1
         fi

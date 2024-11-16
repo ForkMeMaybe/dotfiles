@@ -23,6 +23,9 @@
     - sof-firmware
     - sudo
     - thunar
+    - gvfs
+    - tumbler
+    - ffmpegthumbnailer
     - python-watchdog
     - base-devel
     - xclip
