@@ -1,0 +1,54 @@
+- name: (lxappearance) install packages
+  tags:
+    - lxappearance
+    - packages
+  community.general.pacman:
+    name: lxappearance
+    state: latest
+
+- name: (lxappearance) copy config files
+  become: false
+  tags:
+    - lxappearance
+    - files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /home/{{ ansible_user }}/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the owner can read and write the file, but other users can only read it
+  loop:
+    - .themes
+    - .icons
+
+# - name: (lxappearance) save config files
+#   become: false
+#   tags:
+#     - save
+#     - save-lxappearance
+#   ansible.builtin.copy:
+#     src: /home/{{ ansible_user }}/"{{ item }}"
+#     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/lxappearance/files
+#     group: users
+#     owner: "{{ ansible_user }}"
+#     mode: 0644    # the owner can read and write the file, but other users can only read it
+#   loop:
+#     - .themes
+#     - .icons
+
+- name: (lxappearance) save config directories
+  become: false
+  tags:
+    - save
+    - save-lxappearance
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/{{ item }}
+    dest: "/home/{{ ansible_user }}/repos/dotfiles/roles/lxappearance/files/"
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0755  # Ensure directories are accessible
+    remote_src: true  # Ensure directories are treated as source
+  with_items:
+    - .themes
+    - .icons
+
