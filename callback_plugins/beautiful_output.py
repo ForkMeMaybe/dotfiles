@@ -187,7 +187,7 @@ def iscollection(obj):
     Returns:
         bool: True if the object is a collection and False otherwise.
     """
-    return isinstance(obj, Sequence) and not isinstance(obj, basestring)
+    return isinstance(obj, Sequence) and not isinstance(obj, (str, bytes))
 
 
 def stringtruncate(

@@ -2,7 +2,7 @@
 
 function init_archlinux() {
     # install basic system packages
-    sudo pacman --noconfirm -Syu ansible python-watchdog neovim openssh git
+    sudo pacman --noconfirm -Syu ansible neovim openssh git
 }
 
 function init() {
