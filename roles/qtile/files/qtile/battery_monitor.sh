@@ -52,6 +52,7 @@ while true; do
 
     # Check for charging status change
     if [ "$charging" != "Charging" ] && [ $i -eq 1 ]; then
+        dunstctl close
         notify-send -u low -i "$discharging_icon" "$percentage%" "Discharging"
         i=0
     fi

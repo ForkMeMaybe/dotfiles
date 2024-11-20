@@ -1,5 +1,7 @@
 #!/bin/env bash
 
+sleep 8
+
 # Icons for notifications
 icon_success="$HOME/.config/dunst/icons/cached.png"
 icon_error="$HOME/.config/dunst/icons/warning.png"
@@ -8,6 +10,9 @@ icon_warning="$HOME/.config/dunst/icons/exclamation.png"
 # The cache directory paths
 mpv_cache_directory="$HOME/.cache/mpv_thumbs_cache"
 tumbler_cache_directory="$HOME/.cache/thumbnails"
+
+# Maximum allowed cache size in bytes (e.g., 50MB = 50 * 1024 * 1024)
+max_cache_size=$((50 * 1024 * 1024))
 
 # Function to calculate directory size
 get_cache_size() {
@@ -36,10 +41,6 @@ clean_cache_if_needed() {
         fi
     fi
 }
-
-# Maximum allowed cache size in bytes (e.g., 50MB = 50 * 1024 * 1024)
-#max_cache_size=$((50 * 1024 * 1024))
-max_cache_size=1000
 
 # Check if both directories exist
 if [ ! -d "$mpv_cache_directory" ] && [ ! -d "$tumbler_cache_directory" ]; then
