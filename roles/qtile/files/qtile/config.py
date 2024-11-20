@@ -158,6 +158,9 @@ keys = [
     Key([mod1, "shift"], "8",lazy.function(close_all_windows_in_workspace, "8"),desc="Close all windows in workspace 8"),
     # Close all windows in workspace "9"
     Key([mod1, "shift"], "9",lazy.function(close_all_windows_in_workspace, "9"),desc="Close all windows in workspace 9"),
+
+    # Flame-Shot
+     Key([mod], "s", lazy.spawn("flameshot gui"), desc="Open Flame-Shot GUI"),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -283,14 +286,14 @@ screens = [
             [
 		widget.Spacer(length = 3, background="#00000000",),
                 widget.Image(
-		         background="#00000000",
+		         #background="#00000000",
                  filename = "~/.config/qtile/icons/a.png",
                  scale = "False",
                  mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(terminal)},
                  margin_x = 2
                  ),
 		widget.TextBox(
-                 background="#00000000",
+                 #background="#00000000",
                  text = '|',
                  font = "Iosevka Nerd Font",
                  foreground = colors[1],
@@ -298,14 +301,14 @@ screens = [
                  fontsize = 18
                  ),
                 widget.Prompt(
-                 background="#00000000",
+                 #background="#00000000",
                  font = "Iosevka Nerd Font, Noto Color Emoji, Symbola",
                  fontsize=17,
                  foreground = colors[1]
                 ),
                 widget.GroupBox(
-		 background="#00000000",
-                 fontsize = 18,
+		         #background="#00000000",
+                 fontsize = 16,
                  margin_y = 3,
                  margin_x = 3,
                  padding_y = 0,
@@ -322,7 +325,7 @@ screens = [
                  other_screen_border = colors[4],
                  ),
                 widget.TextBox(
-  		 background="#00000000",
+  		         #background="#00000000",
                  text = '|',
                  font = "Iosevka Nerd Font",
                  foreground = colors[1],
@@ -330,20 +333,20 @@ screens = [
                  fontsize = 18
                  ),
                 widget.CurrentLayoutIcon(
-		 background="#00000000",
+		         #background="#00000000",
                  foreground = colors[1],
                  padding = 4,
                  scale = 0.7,
-		 fontsize = 19
+        		 fontsize = 19
                  ),
                 widget.CurrentLayout(
-		 background="#00000000",
+		         #background="#00000000",
                  foreground = colors[1],
                  padding = 5,
                  fontsize = 16
                  ),
                 widget.TextBox(
-		 background="#00000000",
+		         #background="#00000000",
                  text = '|',
                  font = "Iosevka Nerd Font",
                  foreground = colors[1],
@@ -351,26 +354,26 @@ screens = [
                  fontsize = 18
                  ),
                 widget.WindowName(
-		 background="#00000000",
+		         #background="#00000000",
                  foreground = colors[6],
                  max_chars = 40,
                  fontsize = 16
                  ),
-		# widget.TextBox(
-		#                   text="❤",
-		#                   background="#00000000",
-		#                   font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
-		#                   fontsize=20,
-		#                   foreground=colors[3],
-		#                   decorations=[
-		#                    BorderDecoration(
-		#                        colour = colors[3],
-		#                        border_width = [0, 0, 2, 0],
-		#                    )
-		#               ],
-		#               ),
+		        #widget.TextBox(
+		         #text="❤",
+		        #  background="#00000000",
+		        #  font="iosevka nerd font, noto color emoji, symbola",
+		        #  fontsize=20,
+		        #  foreground=colors[3],
+		        #  decorations=[
+		        #  borderdecoration(
+		        #     colour = colors[3],
+		        #     border_width = [0, 0, 2, 0],
+		        #     )
+		        #  ],
+		        # ),
                 #widget.GenPollText(
-		 #background="#00000000",
+		         # background="#00000000",
                  # fontsize = 15,
                  # update_interval = 300,
                  # func = lambda: subprocess.check_output("printf $(uname -r)", shell=True, text=True),
@@ -383,10 +386,10 @@ screens = [
                  #     )
                  # ],
                  # ),
-              widget.Spacer(length = 9, background="#00000000",),
-	      widget.TextBox(
+              widget.Spacer(length = 9),
+        	  widget.TextBox(
                     text=" ",
-                    background="#00000000",
+                    #background="#00000000",
                     font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
                     fontsize=20,
                     foreground=colors[4],
@@ -398,7 +401,7 @@ screens = [
                 ],
                 ),
               widget.CPU(
-		 background="#00000000",
+		        #background="#00000000",
                  fontsize = 15,
                  format = ' CPU: {load_percent}%',
                  foreground = colors[4],
@@ -409,10 +412,10 @@ screens = [
                      )
                  ],
                  ),
-            widget.Spacer(length = 9, background="#00000000",),
+            widget.Spacer(length = 9),
 	    widget.TextBox(
                     text="",
-                    background="#00000000",
+                    #background="#00000000",
                     font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
                     fontsize=20,
                     foreground=colors[8],
@@ -424,7 +427,7 @@ screens = [
                 ],
                 ),
                 widget.Memory(
-        		 background="#00000000",
+        		 #background="#00000000",
                  font = "Iosevka Nerd Font, Noto Color Emoji, Symbola",
                  fontsize = 15,
                  foreground = colors[8],
@@ -438,10 +441,10 @@ screens = [
                      )
                  ],
                  ),
-                 widget.Spacer(length = 9, background="#00000000",),
+                 widget.Spacer(length = 9),
 		         widget.TextBox(
                     text=" ",
-                    background="#00000000",
+                    #background="#00000000",
                     font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
                     fontsize=18,
                     foreground=colors[5],
@@ -453,7 +456,7 @@ screens = [
                 ],
                 ),
                  widget.DF(
-        		 background="#00000000",
+        		 #background="#00000000",
         		 font = "Iosevka Nerd Font, Noto Color Emoji, Symbola",
                  fontsize = 15,
                  update_interval = 60,
@@ -471,10 +474,10 @@ screens = [
                      )
                  ],
                  ),
-                widget.Spacer(length = 9, background="#00000000",),
+                widget.Spacer(length = 9),
         		widget.TextBox(
 	     	    text="",
-	 	        background="#00000000",
+	 	        #background="#00000000",
 	    	    font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
     		    fontsize=20, 
     		    foreground=colors[7],
@@ -486,8 +489,8 @@ screens = [
                     ],
 		        ),
                 widget.Volume(
-		 background="#00000000",
-		 font = "Iosevka Nerd Font, Noto Color Emoji, Symbola",
+        		 #background="#00000000",
+		         font = "Iosevka Nerd Font, Noto Color Emoji, Symbola",
                  fontsize = 15,
                  foreground = colors[7],
                  fmt = ' VOL: {}',
@@ -498,10 +501,10 @@ screens = [
                      )
                  ],
                  ),
-                widget.Spacer(length = 9, background="#00000000",),
+                widget.Spacer(length = 9),
 		widget.TextBox(
                     text="  ",
-                    background="#00000000",
+                    #background="#00000000",
                     font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
                     fontsize=20,
                     foreground=colors[4],
@@ -514,7 +517,7 @@ screens = [
                ),
 		widget.Net(
 		    foreground = colors[4],
-                    background = "#00000000",
+                    #background = "#00000000",
                     font = 'Iosevka Nerd Font',
                     fontsize = 15,
                     format='{down:.0f}{down_suffix} ↓↑ {up:.0f}{up_suffix}',
@@ -527,7 +530,7 @@ screens = [
                     ],
                 ),
                 #widget.KeyboardLayout(
-		# background="#00000000",
+        		# background="#00000000",
                 # fontsize = 15,
                 # foreground = colors[4],
                 # fmt = ' KBD: {}',
@@ -538,12 +541,12 @@ screens = [
                 #     )
                 # ],
                 # ),
-                widget.Spacer(length = 9, background="#00000000",),
-		widget.TextBox(
+                widget.Spacer(length = 9),
+		        widget.TextBox(
                     text=" ",
-                    background="#00000000",
+                    #background="#00000000",
                     font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
-                    fontsize=18,
+                    fontsize=16,
                     foreground=colors[3],
                     decorations=[
                      BorderDecoration(
@@ -553,11 +556,11 @@ screens = [
                 ],
                 ),
                 widget.Clock(
-		 background="#00000000",
-		 font = "Iosevka Nerd Font, Noto Color Emoji, Symbola",
+        		#background="#00000000",
+        		 font = "Iosevka Nerd Font, Noto Color Emoji, Symbola",
                  fontsize = 15,
                  foreground = colors[3],
-		 format=" %a, %b %d - %I:%M %p",
+		         format=" %a, %b %d - %I:%M %p",
                  decorations=[
                      BorderDecoration(
                          colour = colors[3],
@@ -565,10 +568,10 @@ screens = [
                      )
                  ],
                  ),
-                widget.Spacer(length = 9, background="#00000000",),
+                widget.Spacer(length = 9),
                 widget.Battery(
-			font = "Iosevka Nerd Font, Noto Color Emoji, Symbola",
-			background="#00000000",
+        			font = "Iosevka Nerd Font, Noto Color Emoji, Symbola",
+		        	#background="#00000000",
                         fontsize = 15,
                         foreground = colors[1],
                         format = '  {percent:2.0%}',
@@ -581,9 +584,9 @@ screens = [
 		        low_foreground=colors[3],
 		        update_interval=10,
                         ),
-                widget.Spacer(length = 9, background="#00000000",),
-                widget.Systray(padding = 3, background="#00000000",),
-                widget.Spacer(length = 9, background="#00000000",),
+                widget.Spacer(length = 9),
+                widget.Systray(padding = 3),
+                widget.Spacer(length = 9),
 
                 widget.Chord(
                     chords_colors={
@@ -596,10 +599,10 @@ screens = [
                 #widget.QuickExit(),
             ],
             24,
-            background="#00000000",
-            #background = "#251959",
-            #border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            #border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            #background="#00000000",
+            border_width=[3, 0, 3, 0],  # Draw top and bottom borders
+            border_color=[colors[0][0], colors[0][1], colors[0][1], colors[0][0]],  # Borders are magenta
+            margin=[2, 0, 0, 0]
         ),
         # You can uncomment this variable if you see that on X11 floating resize/moving is laggy
         # By default we handle these events delayed to already improve performance, however your system might still be struggling
