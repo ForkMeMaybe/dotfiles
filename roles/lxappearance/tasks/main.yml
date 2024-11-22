@@ -27,14 +27,14 @@
 #     - save
 #     - save-lxappearance
 #   ansible.builtin.copy:
-#     src: /home/{{ ansible_user }}/"{{ item }}"
+#     src: /home/{{ ansible_user }}/{{ item }}
 #     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/lxappearance/files
 #     group: users
 #     owner: "{{ ansible_user }}"
-#     mode: 0644    # the owner can read and write the file, but other users can only read it
+#     mode: 0755    # the owner can read and write the file, but other users can only read it
 #   loop:
-#     - .themes
-#     - .icons
+#      - .themes
+#      - .icons
 
 - name: (lxappearance) save config directories
   become: false
