@@ -52,6 +52,19 @@ keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left
 -- make a file executable
 keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
--- copy and paste selected lines 
+-- Copy and paste selected lines or current line if no selection is active
+keymap.set('n', '<C-S-Down>', ':t.<CR>gv', { noremap = true, silent = true })
 keymap.set('v', '<C-S-Down>', ":t'><CR>gv", { noremap = true, silent = true })
+
+-- Map Ctrl + h, j, k, l for visual selection starting from the cursor's position
+keymap.set('n', '<C-S-h>', 'vh', { desc = 'Select text to the beginning of the line using Ctrl+Shift+i' })  -- Select to the beginning of the line
+keymap.set('n', '<C-S-l>', 'vL', { desc = 'Select text to the end of the line using Ctrl+Shift+j' })    -- Select to the end of the line
+keymap.set('n', '<C-S-k>', 'vK', { desc = 'Select the current line upwards using Ctrl+Shift+k' })        -- Select the current line upwards from cursor
+keymap.set('n', '<C-S-J>', 'vJ', { desc = 'Select the current line downwards using Ctrl+Shift+l' })      -- Select the current line downwards from cursor
+keymap.set('n', '<C-S-Left>', 'v0', { desc = 'Select text to the beginning of the line using Ctrl+Shift+Left' })  -- Select to the beginning of the line
+keymap.set('n', '<C-S-Right>', 'v$', { desc = 'Select text to the end of the line using Ctrl+Shift+Right' })    -- Select to the end of the line
+keymap.set('n', '<C-S-Up>', 'vgg', { desc = 'Select text to the beginning of the line using Ctrl+Shift+Left' })  -- Select to the beginning of the file
+keymap.set('n', '<C-S-Down>', 'vG', { desc = 'Select text to the end of the line using Ctrl+Shift+Right' })    -- Select to the end of the file
+
+
 
