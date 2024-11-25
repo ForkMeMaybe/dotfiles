@@ -10,7 +10,7 @@
     - bash
     - alsa
     - yay
-    - betterlockscreen
+    - i3lock
     - qtile
     - alacritty
     - starship

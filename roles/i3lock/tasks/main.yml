@@ -1,0 +1,15 @@
+- name: (i3lock) Install i3lock
+  tags:
+    - i3lock
+    - packages
+  community.general.pacman:
+    name: i3lock
+    state: latest
+
+- name: (i3lock-fancy) Install i3lock-fancy using yay
+  become: true
+  tags:
+    - temp5
+    - i3lock
+    - packages
+  command: yay -S --noconfirm i3lock-fancy
