@@ -25,10 +25,10 @@ keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) 
 keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
 
 -- Split navigation
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to below split" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to above split" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
+keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
+keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to below split" })
+keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to above split" })
+keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
 
 -- move selected text up or down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -45,9 +45,13 @@ keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
 
 -- if you copy a text and want to paste it over some other text without losing the original copied text.
-vim.keymap.set("x", "<leader>p", [["_dP]])
+keymap.set("x", "<leader>p", [["_dP]])
 
 -- edit the word your cursor is on throughout the file
 keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 -- make a file executable
 keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- copy and paste selected lines 
+keymap.set('v', '<C-S-Down>', ":t'><CR>gv", { noremap = true, silent = true })
+
