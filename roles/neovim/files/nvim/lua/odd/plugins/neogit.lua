@@ -7,7 +7,7 @@ return {
   },
   config = function()
     -- Set up a keymap to launch Neogit
-    vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>")
+    vim.keymap.set("n", "<leader>gg", "<cmd>Neogit<cr>", { desc = 'open neogit' })
   end
 }
 
