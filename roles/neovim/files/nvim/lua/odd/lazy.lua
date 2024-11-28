@@ -21,7 +21,7 @@ require("lazy").setup({
 		notify = true,
 	},
 	change_detection = {
-		notify = true,
+		notify = false,
 	},
 	-- Global options for Lazy.nvim to disable luarocks support
 	rocks = {

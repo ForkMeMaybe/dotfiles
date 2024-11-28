@@ -33,7 +33,7 @@ return {
                     "bashls",      -- Bash language server
                     "cssls",       -- CSS language server
                     "emmet_ls",    -- Emmet language server (HTML, CSS, etc.)
-		    "pyright",     -- Python language server
+        		    "pyright",     -- Python language server
                 },
             })
 
@@ -46,6 +46,7 @@ return {
                     "ruff",         -- Python linter
                     "black",        -- Python formatter
                     "clang-format", -- C/C++ formatter
+                    "mypy", -- Python type checker
                    -- "checkmake",    -- Makefile checker
                 },
                 automatic_installation = true,  -- Automatically install external tools if missing
