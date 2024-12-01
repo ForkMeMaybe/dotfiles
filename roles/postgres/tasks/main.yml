@@ -1,0 +1,25 @@
+- name: (postgres) Install postgres package
+  tags:
+    - postgres
+    - packages
+  community.general.pacman:
+    name: postgresql
+    state: latest
+
+- name: (postgres) Initialize database cluster
+  tags:
+    - postgres
+    - system
+  become_user: postgres
+  command: initdb -D /var/lib/postgres/data
+  creates: /var/lib/postgres/data/postgresql.conf  # Prevents re-running if the DB is already initialized
+
+- name: (postgres) Enable and start PostgreSQL service
+  tags:
+    - postgres
+    - system
+  become: yes
+  ansible.builtin.systemd:
+    name: postgresql
+    enabled: yes
+    state: started
