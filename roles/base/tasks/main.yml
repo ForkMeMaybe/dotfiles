@@ -24,6 +24,9 @@
     - sudo
     - thunar
     - gvfs
+    - gvfs-mtp
+    - libmtp
+    - mtpfs
     - tumbler
     - ffmpegthumbnailer
     - python-watchdog
