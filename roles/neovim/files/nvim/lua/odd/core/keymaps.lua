@@ -34,6 +34,7 @@ keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
 keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = 'move selected text up or down' })
 keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = 'move selected text up or down' })
 
+
 -- takes the line below you and append it to the current line with a space. Allows cursor to remain place
 keymap.set("n", "J", "mzJ`z", { desc = 'takes the line below you and append it to the current line with a space. Allows cursor to remain place' })
 -- allow half page jumping
@@ -58,10 +59,15 @@ keymap.set('v', '<C-S-Down>', ":t'><CR>gv", { noremap = true, silent = true, des
 
 -- Map Ctrl + h, j, k, l for visual selection starting from the cursor's position
 keymap.set('n', '<C-S-h>', 'vh', { desc = 'Select text to the left of the line using Ctrl+Shift+h' })  -- Select to the left
-keymap.set('n', '<C-S-l>', 'vL', { desc = 'Select text to the right of the line using Ctrl+Shift+l' })    -- Select to the right
+keymap.set('n', '<C-S-l>', 'vl', { desc = 'Select text to the right of the line using Ctrl+Shift+l' })    -- Select to the right
 keymap.set('n', '<C-S-k>', 'vk', { desc = 'Select the current line upwards using Ctrl+Shift+k' })        -- Select upwards
 keymap.set('n', '<C-S-J>', 'vj', { desc = 'Select the current line downwards using Ctrl+Shift+j' })      -- Select downwards
 keymap.set('n', '<C-S-Left>', 'v0', { desc = 'Select text to the beginning of the line using Ctrl+Shift+Left' })  -- Select to the beginning of the line
 keymap.set('n', '<C-S-Right>', 'v$', { desc = 'Select text to the end of the line using Ctrl+Shift+Right' })    -- Select to the end of the line
 keymap.set('n', '<C-S-Up>', 'vgg', { desc = 'Select text to the beginning of the line using Ctrl+Shift+Up' })  -- Select to the beginning of the file
 -- keymap.set('n', '<C-S-Down>', 'vG', { desc = 'Select text to the end of the line using Ctrl+Shift+Right' })    -- Select to the end of the file
+
+
+-- Enable indenting when pressing Tab in visual mode
+vim.api.nvim_set_keymap('v', '<Tab>', '>gv', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<S-Tab>', '<gv', { noremap = true, silent = true })

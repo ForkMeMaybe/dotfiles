@@ -12,7 +12,15 @@
     - system
   become_user: postgres
   command: initdb -D /var/lib/postgres/data
-  creates: /var/lib/postgres/data/postgresql.conf  # Prevents re-running if the DB is already initialized
+  when: not ansible_facts['ansible_stat']['exists']
+  register: db_initialized
+  ignore_errors: true
+
+- name: (postgres) Check if the database is initialized
+  stat:
+    path: /var/lib/postgres/data/postgresql.conf
+  register: ansible_stat
+
 
 - name: (postgres) Enable and start PostgreSQL service
   tags:
