@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cp -r ~/themes/Original/. ~/ &&
+wal -b 282738 -i ~/wallpaper/itadori.jpg &&
+qtile cmd-obj -o cmd -f restart 
+
