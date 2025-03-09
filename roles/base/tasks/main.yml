@@ -18,6 +18,8 @@
     - pipewire
     - pipewire-alsa
     - wireplumber
+    - pipewire-jack
+    - pipewire-pulse
     - bluez
     - bluez-utils
     - sof-firmware
