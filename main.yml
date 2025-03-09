@@ -1,6 +1,7 @@
 ---
 - hosts: all
   roles:
+    - yay
     - base
     - services
     - git
@@ -8,8 +9,8 @@
     - xorg
     - picom
     - bash
+    - zsh
     - alsa
-    - yay
     - i3lock
     - qtile
     - alacritty
@@ -21,3 +22,5 @@
     - mpv
     - lxappearance
     - postgres
+    - cava
+    - themes

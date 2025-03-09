@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/env bash
 notify-send -u normal "Autostart.sh executed"
 
 nitrogen --restore

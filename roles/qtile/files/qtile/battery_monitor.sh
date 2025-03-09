@@ -40,7 +40,7 @@ while true; do
             notify-send -u normal -i "$battery_at_60_icon" "Battery At" "$percentage%"
         fi
 
-        if [ $percentage -ge 90 ]; then
+        if [ $percentage -eq 90 ]; then
             notify-send -u critical -i "$full_battery_icon" "High Battery" "$percentage%"
         fi
     fi

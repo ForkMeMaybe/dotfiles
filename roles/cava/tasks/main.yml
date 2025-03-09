@@ -1,0 +1,31 @@
+- name: (cava) install cava using yay
+  tags:
+    - cava
+    - packages
+  shell: yay -S --noconfirm {{ item }}
+  loop:
+    - cava
+
+- name: (cava) copy config files
+  become: false
+  tags:
+    - cava
+    - files
+  ansible.builtin.copy:
+    src: cava
+    dest: /home/{{ ansible_user }}/.config/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the owner can read and write the file, but other users can only read it
+
+- name: (cava) save config files
+  become: false
+  tags:
+    - save
+    - save-cava
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/.config/cava
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/cava/files/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the owner can read and write the file, but other users can only read it

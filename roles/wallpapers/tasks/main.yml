@@ -1,0 +1,23 @@
+- name: (wallpapers) copy config files
+  become: false
+  tags:
+    - wallpapers
+    - files
+  ansible.builtin.copy:
+    src: wallpaper
+    dest: /home/{{ ansible_user }}/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the owner can read and write the file, but other users can only read it
+
+- name: (wallpapers) save config files
+  become: false
+  tags:
+    - save
+    - save-wallpapers
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/wallpaper
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/wallpapers/files/
+    group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the owner can read and write the file, but other users can only read it

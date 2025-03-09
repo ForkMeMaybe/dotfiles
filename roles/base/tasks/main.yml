@@ -34,3 +34,16 @@
     - xclip
     - xsel
     - redshift
+    - playerctl
+    - brightnessctl
+    - ranger
+    - pulseaudio
+
+- name: (AUR) install packages using yay
+  tags:
+    - base
+    - packages
+  shell: yay -S --noconfirm {{ item }}
+  loop:
+    - pywal-git
+    - pfetch

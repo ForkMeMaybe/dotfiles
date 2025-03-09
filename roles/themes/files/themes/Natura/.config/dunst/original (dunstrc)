@@ -1,0 +1,79 @@
+# Dunst Configuration File
+# This file configures the appearance and behavior of Dunst notifications.
+
+[global]
+        # Notification Dimensions
+        width = (0, 1500)          # Minimum and maximum width of notifications
+        height = 1000                 # Maximum height of notifications
+        origin = top-right            # Position of notifications on the screen
+        offset = 12x30                # Offset from the screen edge
+        scale = 0                     # Scale factor for notifications
+        notification_limit = 10       # Maximum number of notifications to show
+
+        # Progress Bar Settings
+        progress_bar = true           # Enable or disable progress bars
+        progress_bar_height = 10      # Height of the progress bar
+        progress_bar_frame_width = 1  # Width of the frame around the progress bar
+        progress_bar_min_width = 150  # Minimum width of the progress bar
+        progress_bar_max_width = 600  # Maximum width of the progress bar
+
+        # Font Settings
+        font = Iosevka Nerd Font       # Font used in notifications
+        line_height = 10               # Line height of the font
+        alignment = left              # Alignment of text in notifications
+
+        # Notification Appearance
+        show_age_threshold = 60        # Time in seconds to show notification age
+        word_wrap = yes                # Enable word wrapping
+        ignore_newline = no            # Treat newlines as regular characters
+        stack_duplicates = true        # Stack duplicate notifications
+	hide_duplicate_count = true   # hide duplicate count
+
+        # Icon Settings
+        icon_position = left           # Position of the icon in notifications
+        min_icon_size = 44             # Minimum icon size
+        max_icon_size = 50             # Maximum icon size
+        separator_height = 10           # Height of the separator line
+        padding = 5                    # Padding around notifications
+        # gaps = true                  # Enable gaps between notifications (commented out)
+        gap_size = 7                   # Size of the gap between notifications
+        horizontal_padding = 10          # Horizontal padding within notifications
+        text_icon_padding = 5           # Padding between text and icon
+        # transparency = 5             # Notification transparency (commented out)
+        # separator = true              # Enable separator (commented out)
+        separator_color = "#00000000"  # Color of the separator
+        frame_color = "#000000"        # Color of the notification frame
+        frame_width = 2                # Width of the notification frame
+        corner_radius = 6              # Corner radius of notifications
+
+        # Sorting and Visibility
+        sort = yes                     # Enable sorting of notifications
+        indicate_hidden = yes          # Indicate if there are hidden notifications
+        idle_threshold = 10            # Idle time threshold for notifications
+        browser = /usr/bin/firefox      # Default browser to open links
+
+        # Icon Theme Settings
+        enable_recursive_icon_lookup = true  # Enable recursive icon lookup
+        icon_theme = "Adwaita"              # Set the icon theme
+
+[experimental]
+    per_monitor_dpi = true              # Enable per-monitor DPI support
+
+# Urgency Level Settings
+[urgency_low]
+    background = "#1E1E2E"              # Background color for low urgency notifications
+    foreground = "#9ACF69"              # Text color for low urgency notifications
+    frame_color = "#9ACF69"             # Frame color for low urgency notifications
+    timeout = 6                         # Duration before low urgency notification closes
+
+[urgency_normal]
+    background = "#1E1E2E"              # Background color for normal urgency notifications
+    foreground = "#74C7EC"              # Text color for normal urgency notifications
+    frame_color = "#74C7EC"             # Frame color for normal urgency notifications
+    timeout = 6                         # Duration before normal urgency notification closes
+
+[urgency_critical]
+    background = "#1E1E2E"              # Background color for critical urgency notifications
+    foreground = "#D2697D"              # Text color for critical urgency notifications
+    frame_color = "#D2697D"             # Frame color for critical urgency notifications
+    timeout = 0                          # Duration before critical urgency notification closes (0 = persistent)
