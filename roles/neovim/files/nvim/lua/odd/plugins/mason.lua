@@ -119,17 +119,19 @@ return {
                 
                 -- Custom handler for Pyright to specify Python settings
                 ["pyright"] = function()
+                    local venv_path = os.getenv("VIRTUAL_ENV") and os.getenv("VIRTUAL_ENV") .. "/bin/python" or "python3"
+
                     require("lspconfig")["pyright"].setup({
                         capabilities = require("cmp_nvim_lsp").default_capabilities(),
                         settings = {
                             python = {
                                 analysis = {
-                                    typeCheckingMode = "strict", -- Use strict type checking
+                                    typeCheckingMode = "basic", -- Use strict type checking
                                     useLibraryCodeForTypes = true,
                                     diagnosticMode = "workspace",
                                     stubPath = "typings",
                                 },
-                                pythonPath = "/home/odd/.local/share/virtualenvs/Shop-Sphere-CQc6ccCN/bin/python", -- Path to the virtual environment Python interpreter
+                                pythonPath = venv_path, -- Path to the virtual environment Python interpreter
                             },
                         },
                     })
