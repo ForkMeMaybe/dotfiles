@@ -478,7 +478,7 @@ screens = [
                     background="#353446",
                 ),
                 widget.TextBox(
-                    text=" ",
+                    text="",
                     background="#353446",
                     foreground="#CAA9E0",
                     font="Font Awesome 6 Free Solid",
@@ -574,7 +574,7 @@ screens = [
                     foreground="#CAA9E0",
                 ),
                 widget.Clock(
-                    format="%I:%M %p",
+                    format="%I:%M %p  %a, %d %b %Y",
                     background="#282738",
                     foreground="#CAA9E0",
                     font="JetBrainsMono Nerd Font Bold",

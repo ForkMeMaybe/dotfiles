@@ -1,5 +1,5 @@
-import os
 import subprocess
+import os
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, hook, Screen, KeyChord
 from libqtile.lazy import lazy
@@ -478,7 +478,7 @@ screens = [
                     background="#353446",
                 ),
                 widget.TextBox(
-                    text=" ",
+                    text="",
                     background="#353446",
                     foreground="#E5B9C6",
                     font="Font Awesome 6 Free Solid",
@@ -574,7 +574,7 @@ screens = [
                     foreground="#E5B9C6",
                 ),
                 widget.Clock(
-                    format="%I:%M %p",
+                    format="%I:%M %p  %a, %d %b %Y",
                     background="#282738",
                     foreground="#E5B9C6",
                     font="JetBrainsMono Nerd Font Bold",

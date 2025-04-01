@@ -1,6 +1,6 @@
 #!/bin/bash
 
 cp -r ~/themes/Natura/. ~/ &&
-wal -i ~/wallpaper/claudio-testa-FrlCwXwbwkk-unsplash.jpg &&
+wal -i ~/wallpaper/anime-style-mythical-dragon-creature.jpg &&
 qtile cmd-obj -o cmd -f restart 
 
