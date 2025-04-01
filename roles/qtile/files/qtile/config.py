@@ -69,7 +69,7 @@ keys = [
     Key([mod, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod], "t", lazy.window.toggle_floating(), desc="toggle floating"),
+    Key([mod], "u", lazy.window.toggle_floating(), desc="toggle floating"),
     Key(
         [mod, "shift"],
         "m",
@@ -95,12 +95,6 @@ keys = [
         "f",
         lazy.window.toggle_fullscreen(),
         desc="Toggle fullscreen on the focused window",
-    ),
-    Key(
-        [mod],
-        "t",
-        lazy.window.toggle_floating(),
-        desc="Toggle floating on the focused window",
     ),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
@@ -484,7 +478,7 @@ screens = [
                     background="#353446",
                 ),
                 widget.TextBox(
-                    text=" ",
+                    text="",
                     background="#353446",
                     foreground="#CAA9E0",
                     font="Font Awesome 6 Free Solid",
@@ -580,7 +574,7 @@ screens = [
                     foreground="#CAA9E0",
                 ),
                 widget.Clock(
-                    format="%I:%M %p",
+                    format="%I:%M %p  %a, %d %b %Y",
                     background="#282738",
                     foreground="#CAA9E0",
                     font="JetBrainsMono Nerd Font Bold",

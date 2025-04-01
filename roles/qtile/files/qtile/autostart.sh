@@ -1,7 +1,7 @@
 #!/bin/env bash
-notify-send -u normal "Autostart.sh executed"
 
 nitrogen --restore
+wal -R
 picom &
 dunst &
 ~/.config/qtile/clean_thumbs_cache.sh &
