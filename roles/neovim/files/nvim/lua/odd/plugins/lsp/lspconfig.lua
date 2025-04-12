@@ -5,23 +5,20 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         { "antosha417/nvim-lsp-file-operations", config = true },
         { "folke/neodev.nvim", opts = {} },
-        { "jose-elias-alvarez/null-ls.nvim" }, -- Add null-ls as a dependency
+        { "nvimtools/none-ls.nvim" },
     },
     config = function()
-        -- Import plugins
         local lspconfig = require("lspconfig")
         local mason_lspconfig = require("mason-lspconfig")
         local cmp_nvim_lsp = require("cmp_nvim_lsp")
-        local null_ls = require("null-ls")
+        local null_ls = require("null-ls")  -- changed from require("null-ls")
 
-        -- Diagnostic symbols in the sign column
         local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
         for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
 
-        -- LSP keybinds and autocommands
         local keymap = vim.keymap
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -44,10 +41,8 @@ return {
             end,
         })
 
-        -- Capabilities for autocompletion
         local capabilities = cmp_nvim_lsp.default_capabilities()
 
-        -- Setup handlers for LSP servers
         mason_lspconfig.setup_handlers({
             function(server_name)
                 lspconfig[server_name].setup({
@@ -73,21 +68,30 @@ return {
             end,
         })
 
-        -- Format on save for Python files
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
         vim.api.nvim_create_autocmd("BufWritePre", {
             group = augroup,
             pattern = "*.py",
             callback = function()
-                vim.lsp.buf.format({ async = false })
+                vim.lsp.buf.format({
+                    async = false,
+                    filter = function(client)
+                        return client.name == "null-ls"
+                    end,
+                })
             end,
         })
 
-        -- Null-ls configuration
         null_ls.setup({
             sources = {
-                null_ls.builtins.formatting.black, -- Python formatter
-                null_ls.builtins.diagnostics.ruff, -- Python linter
+                null_ls.builtins.formatting.black.with({
+                    extra_args = { "--fast" },
+                }),
+                null_ls.builtins.diagnostics.sqruff,
+                null_ls.builtins.diagnostics.mypy.with({
+                    extra_args = { "--strict" },
+                }),
             },
             on_attach = function(client, bufnr)
                 if client.supports_method("textDocument/formatting") then
@@ -102,5 +106,25 @@ return {
                 end
             end,
         })
+
+        -- null_ls.setup({
+        --     sources = {
+        --         null_ls.builtins.formatting.black,
+        --         null_ls.builtins.diagnostics.sqruff,
+        --     },
+        --     on_attach = function(client, bufnr)
+        --         if client.supports_method("textDocument/formatting") then
+        --             vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        --             vim.api.nvim_create_autocmd("BufWritePre", {
+        --                 group = augroup,
+        --                 buffer = bufnr,
+        --                 callback = function()
+        --                     vim.lsp.buf.format({ async = false })
+        --                 end,
+        --             })
+        --         end
+        --     end,
+        -- })
     end,
 }
+
