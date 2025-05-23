@@ -41,6 +41,10 @@
     - ranger
     - pulseaudio
     - zenity
+    - xf86-video-amdgpu
+    - mesa
+    - vulkan-radeon
+    - libva-mesa-driver
 
 - name: (AUR) install packages using yay
   tags:
