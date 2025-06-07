@@ -1,6 +1,6 @@
 #!/bin/bash
 
 cp -r ~/themes/Cozy/. ~/ &&
-wal -b 282738 -i ~/wallpaper/Aesthetic2.png &&
+wal -b 282738 -i ~/wallpaper/1377813.png &&
 qtile cmd-obj -o cmd -f restart 
 
