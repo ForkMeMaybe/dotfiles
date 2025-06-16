@@ -217,5 +217,5 @@ format = '[](fg:#333a56 $style)[  $time ](fg:#94e2d5 $style)'
 # Last param in the first line/row
 # fg:#3b4363 if time enabled
 [character]
-success_symbol = "[ ](fg:#3E3D4F)"
-error_symbol = "[ ](fg:#3E3D4F)"
+success_symbol = "[ ](fg:#91B1F0)"
+error_symbol = "[ ](fg:#91B1F0)"
