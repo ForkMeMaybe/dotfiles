@@ -1,5 +1,6 @@
 #!/bin/env bash
 
+# Start gnome-keyring
 nitrogen --restore
 wal -R
 picom &
