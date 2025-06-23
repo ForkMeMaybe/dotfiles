@@ -23,6 +23,7 @@
     - bluez
     - bluez-utils
     - sof-firmware
+    - linux-firmware
     - sudo
     - thunar
     - gvfs
