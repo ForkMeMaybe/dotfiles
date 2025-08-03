@@ -98,17 +98,22 @@ return {
       pattern = "java",
       callback = function()
         local jdtls = require("jdtls")
-        local home = os.getenv("HOME")
-        local workspace_dir = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+        local jdtls_setup = require("jdtls.setup")
+
+        local root_dir = jdtls_setup.find_root({ ".git", "pom.xml", "build.gradle", "mvnw", "gradlew"}) or vim.fn.getcwd()
+        local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+        local workspace_dir = vim.fn.stdpath("data") .. "/site/java/workspace-root/" .. project_name
 
         jdtls.start_or_attach({
           cmd = { "jdtls" },
-          root_dir = require("jdtls.setup").find_root({ ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }),
+          root_dir = root_dir,
           capabilities = capabilities,
           workspace_folders = { { name = "workspace", uri = vim.uri_from_fname(workspace_dir) } },
+          settings = {},
         })
       end,
     })
+
 
 
     vim.api.nvim_create_autocmd("BufWritePre", {
