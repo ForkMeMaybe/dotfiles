@@ -46,6 +46,7 @@
     - mesa
     - vulkan-radeon
     - libva-mesa-driver
+    - python-dbus-fast
 
 - name: (AUR) install packages using yay
   tags:
