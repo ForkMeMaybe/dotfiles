@@ -1,5 +1,5 @@
-import subprocess
 import os
+import subprocess
 from libqtile import bar, layout, qtile, widget, hook
 from libqtile.config import Click, Drag, Group, Key, Match, hook, Screen, KeyChord
 from libqtile.lazy import lazy
@@ -267,7 +267,7 @@ for vt in range(1, 8):
     )
 
 # groups = [Group(i) for i in "123456789"]
-groups = [Group(f"{i+1}", label="") for i in range(9)]
+groups = [Group(f"{i + 1}", label="") for i in range(9)]
 
 for i in groups:
     keys.extend(
@@ -343,12 +343,12 @@ screens = [
             [
                 widget.Spacer(
                     length=15,
-                    background="#282738",
+                    background="#232A2E",
                 ),
                 widget.Image(
                     filename="~/.config/qtile/Assets/launch_Icon.png",
                     margin=2,
-                    background="#282738",
+                    background="#232A2E",
                     mouse_callbacks={"Button1": power},
                 ),
                 widget.Image(
@@ -356,33 +356,35 @@ screens = [
                 ),
                 widget.GroupBox(
                     font="JetBrainsMono Nerd Font",
-                    fontsize=23,
+                    fontsize=24,
                     borderwidth=3,
                     highlight_method="block",
-                    active="#E5B9C6",
-                    block_highlight_text_color="#CFB3E5",
+                    active="#86918A",
+                    block_highlight_text_color="#D3C6AA",
                     highlight_color="#4B427E",
-                    inactive="#282738",
+                    inactive="#232A2E",
                     foreground="#4B427E",
-                    background="#353446",
-                    this_current_screen_border="#353446",
-                    this_screen_border="#353446",
-                    other_current_screen_border="#353446",
-                    other_screen_border="#353446",
-                    urgent_border="#353446",
+                    background="#343F44",
+                    this_current_screen_border="#343F44",
+                    this_screen_border="#343F44",
+                    other_current_screen_border="#343F44",
+                    other_screen_border="#343F44",
+                    urgent_border="#343F44",
                     rounded=True,
                     disable_drag=True,
                 ),
                 widget.Spacer(
                     length=8,
-                    background="#353446",
+                    background="#343F44",
                 ),
                 widget.Image(
                     filename="~/.config/qtile/Assets/1.png",
                 ),
                 widget.CurrentLayout(
                     custom_icon_paths=["~/.config/qtile/Assets/layout"],
-                    background="#353446",
+                    mode="icon",
+                    icon_first=True,
+                    background="#343F44",
                     scale=0.50,
                 ),
                 widget.Image(
@@ -392,14 +394,14 @@ screens = [
                     text=" ",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
-                    background="#282738",
-                    foreground="#E5B9C6",
+                    background="#232A2E",
+                    foreground="#86918A",
                     mouse_callbacks={"Button1": search},
                 ),
                 widget.TextBox(
                     fmt="Search",
-                    background="#282738",
-                    foreground="#E5B9C6",
+                    background="#232A2E",
+                    foreground="#86918A",
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                     mouse_callbacks={"Button1": search},
@@ -408,8 +410,8 @@ screens = [
                     filename="~/.config/qtile/Assets/4.png",
                 ),
                 widget.WindowName(
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                     empty_group_string="Desktop",
@@ -419,27 +421,27 @@ screens = [
                     filename="~/.config/qtile/Assets/3.png",
                 ),
                 widget.Systray(
-                    background="#282738",
+                    background="#232A2E",
                     fontsize=2,
                 ),
                 widget.TextBox(
                     text=" ",
-                    background="#282738",
+                    background="#232A2E",
                 ),
                 widget.Image(
                     filename="~/.config/qtile/Assets/6.png",
-                    background="#353446",
+                    background="#343F44",
                 ),
                 widget.TextBox(
                     text="",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                 ),
                 widget.Memory(
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     format="{MemUsed: .0f}{mm}",
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
@@ -453,18 +455,18 @@ screens = [
                 ),
                 widget.Spacer(
                     length=8,
-                    background="#353446",
+                    background="#343F44",
                 ),
                 widget.TextBox(
                     text="",
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                 ),
                 widget.CPU(
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     fontsize=13,
                     format=" CPU: {load_percent}%",
                     font="JetBrainsMono Nerd Font Bold",
@@ -475,18 +477,18 @@ screens = [
                 ),
                 widget.Spacer(
                     length=8,
-                    background="#353446",
+                    background="#343F44",
                 ),
                 widget.TextBox(
                     text="",
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                 ),
                 widget.DF(
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                     update_interval=60,
@@ -504,18 +506,18 @@ screens = [
                 ),
                 widget.Spacer(
                     length=8,
-                    background="#353446",
+                    background="#343F44",
                 ),
                 widget.TextBox(
                     text=" ",
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
                 ),
                 widget.Volume(
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                 ),
@@ -524,20 +526,20 @@ screens = [
                 ),
                 widget.Spacer(
                     length=8,
-                    background="#353446",
+                    background="#343F44",
                 ),
                 widget.TextBox(
                     text=" ",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                 ),
                 widget.Battery(
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     format="{percent:2.0%}",
                 ),
                 widget.Image(
@@ -545,18 +547,18 @@ screens = [
                 ),
                 widget.Spacer(
                     length=8,
-                    background="#353446",
+                    background="#343F44",
                 ),
                 widget.TextBox(
                     text=" ",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                 ),
                 widget.Net(
-                    background="#353446",
-                    foreground="#E5B9C6",
+                    background="#343F44",
+                    foreground="#86918A",
                     fontsize=13,
                     font="JetBrainsMono Nerd Font Bold",
                     format="{down:.0f}{down_suffix} ↓↑ {up:.0f}{up_suffix}",
@@ -564,25 +566,25 @@ screens = [
                 ),
                 widget.Image(
                     filename="~/.config/qtile/Assets/5.png",
-                    background="#353446",
+                    background="#343F44",
                 ),
                 widget.TextBox(
                     text=" ",
                     font="Font Awesome 6 Free Solid",
                     fontsize=13,
-                    background="#282738",
-                    foreground="#E5B9C6",
+                    background="#232A2E",
+                    foreground="#86918A",
                 ),
                 widget.Clock(
+                    background="#232A2E",
                     format="%I:%M %p  %a, %d %b %Y",
-                    background="#282738",
-                    foreground="#E5B9C6",
+                    foreground="#86918A",
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
                 ),
                 widget.Spacer(
                     length=18,
-                    background="#282738",
+                    background="#232A2E",
                 ),
             ],
             30,
