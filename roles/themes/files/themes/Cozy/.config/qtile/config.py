@@ -267,7 +267,7 @@ for vt in range(1, 8):
     )
 
 # groups = [Group(i) for i in "123456789"]
-groups = [Group(f"{i+1}", label="") for i in range(9)]
+groups = [Group(f"{i + 1}", label="") for i in range(9)]
 
 for i in groups:
     keys.extend(
@@ -380,8 +380,10 @@ screens = [
                 widget.Image(
                     filename="~/.config/qtile/Assets/1.png",
                 ),
-                widget.CurrentLayoutIcon(
+                widget.CurrentLayout(
                     custom_icon_paths=["~/.config/qtile/Assets/layout"],
+                    mode="icon",
+                    icon_first=True,
                     background="#353446",
                     scale=0.50,
                 ),
