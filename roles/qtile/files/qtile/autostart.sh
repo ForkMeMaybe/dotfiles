@@ -7,3 +7,4 @@ picom &
 dunst &
 ~/.config/qtile/clean_thumbs_cache.sh &
 ~/.config/qtile/battery_monitor.sh &
+/usr/lib/xdg-desktop-portal-gtk &

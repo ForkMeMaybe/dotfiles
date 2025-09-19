@@ -10,7 +10,7 @@ return {
   config = function()
     local lspconfig = require("lspconfig")
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
-    local null_ls = require("null-ls") -- formerly null-ls
+    local null_ls = require("null-ls")
 
     vim.diagnostic.config({
       signs = {
