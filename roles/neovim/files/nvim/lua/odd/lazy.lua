@@ -16,6 +16,9 @@ require("lazy").setup({
 	{ import = "odd.plugins" },
 	{ import = "odd.plugins.lsp" },
 }, {
+	profiling = {
+		enabled = true,
+	},
 	checker = {
 		enabled = true,
 		notify = true,
@@ -23,10 +26,5 @@ require("lazy").setup({
 	change_detection = {
 		notify = false,
 	},
-	-- Global options for Lazy.nvim to disable luarocks support
-	rocks = {
-		enabled = false,      -- Disable luarocks support completely
-		hererocks = false,    -- Disable hererocks specifically
-	}
 })
 

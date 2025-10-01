@@ -79,11 +79,6 @@ return {
       jdtls = {},
     }
 
-    -- for server_name, config in pairs(servers) do
-    --   config.capabilities = capabilities
-    --   lspconfig[server_name].setup(config)
-    -- end
-
     for server_name, config in pairs(servers) do
       config.capabilities = capabilities
       if server_name ~= "jdtls" then
@@ -118,7 +113,7 @@ return {
 
     vim.api.nvim_create_autocmd("BufWritePre", {
       group = augroup,
-      pattern = { "*.py", "*.java" },
+      pattern = { "*.py", "*.java", "*.lua", "*.js", "*.jsx", "*.ts", "*.tsx", "*.html", "*.css", "*.scss" },
       callback = function()
         vim.lsp.buf.format({
           async = false,
@@ -134,6 +129,9 @@ return {
         null_ls.builtins.formatting.black,
         null_ls.builtins.diagnostics.sqruff,
         null_ls.builtins.formatting.google_java_format,
+        null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.eslint_d,
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
@@ -148,6 +146,10 @@ return {
         end
       end,
     })
+
+    vim.keymap.set("n", "<leader>fm", function()
+      vim.lsp.buf.format({ async = false })
+    end, { desc = "Format code" })
   end,
 }
 
