@@ -10,15 +10,21 @@ return {
             max_name_length = 40,  -- Adjust this value to suit your screen size
             max_prefix_length = 20,  -- Optional: Adjust prefix length
             name_formatter = function(buf)
-                -- Use the buffer's name instead of the current buffer's file path
-                local full_path = buf.name  -- 'buf.name' contains the full path of the file in the buffer
-                local cwd = vim.fn.getcwd()  -- Get the current working directory
+                local buflist = vim.fn.getbufinfo({buflisted = 1})
+                local duplicates = {}
+                for _, b in ipairs(buflist) do
+                    local file_name = vim.fn.fnamemodify(b.name, ":t")
+                    if duplicates[file_name] == nil then
+                        duplicates[file_name] = {}
+                    end
+                    table.insert(duplicates[file_name], b.bufnr)
+                end
 
-                -- Strip the cwd from the full path to get the relative path
-                if full_path:sub(1, #cwd) == cwd then
-                    return full_path:sub(#cwd + 2)  -- +2 to account for the trailing slash
+                local file_name = vim.fn.fnamemodify(buf.name, ":t")
+                if duplicates[file_name] and #duplicates[file_name] > 1 then
+                    return vim.fn.fnamemodify(buf.name, ":p:h:t") .. "/" .. file_name
                 else
-                    return full_path  -- Return the full path if it's outside the cwd
+                    return file_name
                 end
             end,
         },

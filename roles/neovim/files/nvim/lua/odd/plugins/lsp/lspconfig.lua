@@ -5,7 +5,7 @@ return {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim", opts = {} },
-    { "nvimtools/none-ls.nvim" }, -- formerly null-ls
+    { "nvimtools/none-ls.nvim", dependencies = { "nvimtools/none-ls-extras.nvim" } }, -- formerly null-ls
   },
   config = function()
     local lspconfig = require("lspconfig")
@@ -82,7 +82,7 @@ return {
     for server_name, config in pairs(servers) do
       config.capabilities = capabilities
       if server_name ~= "jdtls" then
-        lspconfig[server_name].setup(config)
+        vim.lsp.config(server_name, config)
       end
     end
 
@@ -131,7 +131,8 @@ return {
         null_ls.builtins.formatting.google_java_format,
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.prettier,
-        null_ls.builtins.diagnostics.eslint_d,
+        require("none-ls.diagnostics.eslint_d"),
+        require("none-ls.formatting.eslint_d"),
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
