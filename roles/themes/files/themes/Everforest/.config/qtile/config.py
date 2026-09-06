@@ -132,7 +132,7 @@ keys = [
         [],
         "F7",
         lazy.spawn(
-            "bash -c 'light -U 5 && notify-send -u normal -i /home/odd/.config/dunst/icons/brightness-decrease.png \" \"'"
+            "bash -c 'light -U 5 && notify-send -u normal -i $HOME/.config/dunst/icons/brightness-decrease.png \" \"'"
         ),
         desc="Turn display backlight down",
     ),
@@ -141,7 +141,7 @@ keys = [
         [],
         "F8",
         lazy.spawn(
-            "bash -c 'light -A 5 && notify-send -u normal -i /home/odd/.config/dunst/icons/brightness-increase.png \" \"'"
+            "bash -c 'light -A 5 && notify-send -u normal -i $HOME/.config/dunst/icons/brightness-increase.png \" \"'"
         ),
         desc="Turn display backlight down",
     ),
@@ -150,7 +150,7 @@ keys = [
         [],
         "F2",
         lazy.spawn(
-            "bash -c 'echo 0 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-off.png \" \"'"
+            "bash -c 'echo 0 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i $HOME/.config/dunst/icons/keyboard-backlight-off.png \" \"'"
         ),
         desc="Turn keyboard backlight down",
     ),
@@ -158,7 +158,7 @@ keys = [
         [],
         "F3",
         lazy.spawn(
-            "bash -c 'echo 1 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-on.png \" \"'"
+            "bash -c 'echo 1 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i $HOME/.config/dunst/icons/keyboard-backlight-on.png \" \"'"
         ),
         desc="Turn keyboard backlight up",
     ),
@@ -183,11 +183,11 @@ keys = [
     # Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Open rofi drun mode"),
     # Key([mod], "b", lazy.spawn(os.path.expanduser("~/.config/rofi/applets/bin/powermenu.sh")), desc="Brightness control")
     # Run save_dotfiles.sh script
-    Key([mod, "shift"], "s", lazy.spawn("/home/odd/repos/dotfiles/save_dotfiles.sh")),
+    Key([mod, "shift"], "s", lazy.spawn("$HOME/repos/dotfiles/save_dotfiles.sh")),
     # i3lock Lock Screen
     Key([mod1], "l", lazy.spawn("i3lock-fancy")),
     # Flame-Shot
-    Key([mod], "s", lazy.spawn("flameshot gui"), desc="Open Flame-Shot GUI"),
+    Key([mod], "s", lazy.spawn("sh -c 'pgrep -x flameshot >/dev/null || nohup flameshot >/dev/null 2>&1 & sleep 0.05 && flameshot gui'"), desc="Open Flame-Shot GUI"),
     # Close all windows in workspace "1"
     Key(
         [mod1, "shift"],
@@ -387,27 +387,30 @@ screens = [
                     background="#343F44",
                     scale=0.50,
                 ),
+                # widget.Image(
+                #     filename="~/.config/qtile/Assets/5.png",
+                # ),
+                # widget.TextBox(
+                #     text=" ",
+                #     font="JetBrainsMono Nerd Font Bold",
+                #     fontsize=13,
+                #     background="#232A2E",
+                #     foreground="#86918A",
+                #     mouse_callbacks={"Button1": search},
+                # ),
+                # widget.TextBox(
+                #     fmt="Search",
+                #     background="#232A2E",
+                #     foreground="#86918A",
+                #     font="JetBrainsMono Nerd Font Bold",
+                #     fontsize=13,
+                #     mouse_callbacks={"Button1": search},
+                # ),
+                # widget.Image(
+                #     filename="~/.config/qtile/Assets/4.png",
+                # ),
                 widget.Image(
-                    filename="~/.config/qtile/Assets/5.png",
-                ),
-                widget.TextBox(
-                    text=" ",
-                    font="Font Awesome 6 Free Solid",
-                    fontsize=13,
-                    background="#232A2E",
-                    foreground="#86918A",
-                    mouse_callbacks={"Button1": search},
-                ),
-                widget.TextBox(
-                    fmt="Search",
-                    background="#232A2E",
-                    foreground="#86918A",
-                    font="JetBrainsMono Nerd Font Bold",
-                    fontsize=13,
-                    mouse_callbacks={"Button1": search},
-                ),
-                widget.Image(
-                    filename="~/.config/qtile/Assets/4.png",
+                    filename="~/.config/qtile/Assets/2.png",
                 ),
                 widget.WindowName(
                     background="#343F44",
@@ -433,58 +436,85 @@ screens = [
                     background="#343F44",
                 ),
                 widget.TextBox(
-                    text="",
-                    font="Font Awesome 6 Free Solid",
-                    fontsize=13,
+                    text=" ",
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=15,
                     background="#343F44",
                     foreground="#86918A",
+                    mouse_callbacks={
+                        "Button1": lambda: qtile.cmd_spawn(terminal + " -e yay -Syu")
+                    },
                 ),
-                widget.Memory(
-                    background="#343F44",
-                    foreground="#86918A",
-                    format="{MemUsed: .0f}{mm}",
+                widget.CheckUpdates(
+                    custom_command="yay -Qu --color never",
+                    display_format="{updates} Updates",
+                    no_update_string="0 Updates",
+                    colour_have_updates="#86918A",
+                    colour_no_updates="#86918A",
                     font="JetBrainsMono Nerd Font Bold",
                     fontsize=13,
-                    update_interval=5,
+                    background="#343F44",
+                    update_interval=1800,
                     mouse_callbacks={
-                        "Button1": lambda: qtile.cmd_spawn(terminal + " -e btop")
+                        "Button1": lambda: qtile.cmd_spawn(terminal + " -e yay -Syu")
                     },
                 ),
                 widget.Image(
                     filename="~/.config/qtile/Assets/2.png",
                 ),
+                # widget.TextBox(
+                #     text=" ",
+                #     font="JetBrainsMono Nerd Font Bold",
+                #     fontsize=15,
+                #     background="#343F44",
+                #     foreground="#86918A",
+                # ),
+                # widget.Memory(
+                #     background="#343F44",
+                #     foreground="#86918A",
+                #     format="{MemUsed: .0f}{mm}",
+                #     font="JetBrainsMono Nerd Font Bold",
+                #     fontsize=13,
+                #     update_interval=5,
+                #     mouse_callbacks={
+                #         "Button1": lambda: qtile.cmd_spawn(terminal + " -e btop")
+                #     },
+                # ),
+                # widget.Image(
+                #     filename="~/.config/qtile/Assets/2.png",
+                # ),
+                # widget.Spacer(
+                #     length=8,
+                #     background="#343F44",
+                # ),
+                # widget.TextBox(
+                #     text=" ",
+                #     background="#343F44",
+                #     foreground="#86918A",
+                #     font="JetBrainsMono Nerd Font Bold",
+                #     fontsize=15,
+                # ),
+                # widget.CPU(
+                #     background="#343F44",
+                #     foreground="#86918A",
+                #     fontsize=13,
+                #     format=" CPU: {load_percent}%",
+                #     font="JetBrainsMono Nerd Font Bold",
+                #     update_interval=5,
+                # ),
+                # widget.Image(
+                #     filename="~/.config/qtile/Assets/2.png",
+                # ),
                 widget.Spacer(
                     length=8,
                     background="#343F44",
                 ),
                 widget.TextBox(
-                    text="",
+                    text=" ",
                     background="#343F44",
                     foreground="#86918A",
-                    font="Font Awesome 6 Free Solid",
-                    fontsize=13,
-                ),
-                widget.CPU(
-                    background="#343F44",
-                    foreground="#86918A",
-                    fontsize=13,
-                    format=" CPU: {load_percent}%",
                     font="JetBrainsMono Nerd Font Bold",
-                    update_interval=5,
-                ),
-                widget.Image(
-                    filename="~/.config/qtile/Assets/2.png",
-                ),
-                widget.Spacer(
-                    length=8,
-                    background="#343F44",
-                ),
-                widget.TextBox(
-                    text="",
-                    background="#343F44",
-                    foreground="#86918A",
-                    font="Font Awesome 6 Free Solid",
-                    fontsize=13,
+                    fontsize=15,
                 ),
                 widget.DF(
                     background="#343F44",
@@ -497,7 +527,7 @@ screens = [
                     },
                     partition="/",
                     # format = '[{p}] {uf}{m} ({r:.0f}%)',
-                    format="{uf}{m} Free",
+                    format="{uf:.1f}{m} Free",
                     fmt=" DISK: {}",
                     visible_on_warn=False,
                 ),
@@ -512,10 +542,17 @@ screens = [
                     text=" ",
                     background="#343F44",
                     foreground="#86918A",
-                    font="Font Awesome 6 Free Solid",
-                    fontsize=13,
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=15,
                 ),
                 widget.Volume(
+                    get_volume_command="wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print int($2 * 100)\"%\"}'",
+                    check_mute_command="wpctl get-volume @DEFAULT_AUDIO_SINK@",
+                    check_mute_string="[MUTED]",
+                    volume_up_command="wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+",
+                    volume_down_command="wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-",
+                    mute_command="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+                    update_interval=0.2,
                     background="#343F44",
                     foreground="#86918A",
                     font="JetBrainsMono Nerd Font Bold",
@@ -530,8 +567,8 @@ screens = [
                 ),
                 widget.TextBox(
                     text=" ",
-                    font="Font Awesome 6 Free Solid",
-                    fontsize=13,
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=15,
                     background="#343F44",
                     foreground="#86918A",
                 ),
@@ -551,8 +588,8 @@ screens = [
                 ),
                 widget.TextBox(
                     text=" ",
-                    font="Font Awesome 6 Free Solid",
-                    fontsize=13,
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=15,
                     background="#343F44",
                     foreground="#86918A",
                 ),
@@ -570,8 +607,8 @@ screens = [
                 ),
                 widget.TextBox(
                     text=" ",
-                    font="Font Awesome 6 Free Solid",
-                    fontsize=13,
+                    font="JetBrainsMono Nerd Font Bold",
+                    fontsize=15,
                     background="#232A2E",
                     foreground="#86918A",
                 ),

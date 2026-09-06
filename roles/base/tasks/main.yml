@@ -12,7 +12,6 @@
     - btop
     - nano
     - networkmanager
-    - nitrogen
     - ntfs-3g
     - os-prober
     - pipewire
@@ -40,7 +39,6 @@
     - playerctl
     - brightnessctl
     - ranger
-    - pulseaudio
     - zenity
     - xf86-video-amdgpu
     - mesa
@@ -48,12 +46,25 @@
     - libva-mesa-driver
     - python-dbus-fast
     - viewnior
+    - pfetch-rs
+    - alsa-utils
+    - otf-font-awesome
 
 - name: (AUR) install packages using yay
+  become: false
   tags:
     - base
     - packages
-  shell: yay -S --noconfirm {{ item }}
-  loop:
-    - pywal-git
-    - pfetch
+  ansible.builtin.command: yay -S --noconfirm --needed --answerclean None --answerdiff None nitrogen pywal-git
+
+- name: (flameshot) configure X11 legacy screenshot mode
+  become: false
+  tags:
+    - base
+    - files
+  community.general.ini_file:
+    path: "/home/{{ ansible_user }}/.config/flameshot/flameshot.ini"
+    section: General
+    option: useX11LegacyScreenshot
+    value: "true"
+    create: yes

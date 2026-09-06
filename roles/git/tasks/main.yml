@@ -17,7 +17,7 @@
   copy:
     content: "{{ git_config_file }}"
     dest: "/home/{{ ansible_user }}/.gitconfig"
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0644 # the owner can read and write the file, but other users can only read it
 
@@ -30,7 +30,7 @@
     path: /home/{{ ansible_user }}/repos
     state: directory
     owner: "{{ ansible_user }}"
-    group: "users"
+    # group: "users"
     mode: 0755 # the owner of a file or directory can read, write, and execute it, while other users can only read and execute it
 
 - name: (git) clone git repositories

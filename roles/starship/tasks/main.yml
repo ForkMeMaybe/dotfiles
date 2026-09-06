@@ -17,7 +17,7 @@
   ansible.builtin.copy:
     src: "/home/{{ ansible_user }}/repos/dotfiles/roles/starship/files/{{ starship_config_file }}"
     dest: "/home/{{ ansible_user }}/.config/starship.toml"
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0644 # the owner can read and write the file, but other users can only read it
   when: config_version is defined and config_version != ""
@@ -31,7 +31,7 @@
   ansible.builtin.copy:
     src: starship.toml
     dest: /home/{{ ansible_user }}/.config/starship.toml
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0644 # the owner can read and write the file, but other users can only read it
   when: config_version is not defined or config_version == ""
@@ -44,6 +44,6 @@
   ansible.builtin.copy:
     src: /home/{{ ansible_user }}/.config/starship.toml
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/starship/files/starship.toml
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0644 # the owner can read and write the file, but other users can only read it

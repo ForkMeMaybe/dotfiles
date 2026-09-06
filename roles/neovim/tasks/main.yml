@@ -20,7 +20,7 @@
   ansible.builtin.copy:
     src: nvim
     dest: /home/{{ ansible_user }}/.config
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0644 # the owner can read and write the file, but other users can only read it
 
@@ -33,6 +33,6 @@
   ansible.builtin.copy:
     src: /home/{{ ansible_user }}/.config/nvim
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/neovim/files
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0644    # the owner can read and write the file, but other users can only read it

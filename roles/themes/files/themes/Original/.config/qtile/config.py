@@ -139,7 +139,7 @@ keys = [
         [],
         "F7",
         lazy.spawn(
-            "bash -c 'light -U 5 && notify-send -u normal -i /home/odd/.config/dunst/icons/brightness-decrease.png \" \"'"
+            "bash -c 'light -U 5 && notify-send -u normal -i $HOME/.config/dunst/icons/brightness-decrease.png \" \"'"
         ),
         desc="Turn display backlight down",
     ),
@@ -148,7 +148,7 @@ keys = [
         [],
         "F8",
         lazy.spawn(
-            "bash -c 'light -A 5 && notify-send -u normal -i /home/odd/.config/dunst/icons/brightness-increase.png \" \"'"
+            "bash -c 'light -A 5 && notify-send -u normal -i $HOME/.config/dunst/icons/brightness-increase.png \" \"'"
         ),
         desc="Turn display backlight down",
     ),
@@ -157,7 +157,7 @@ keys = [
         [],
         "F2",
         lazy.spawn(
-            "bash -c 'echo 0 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-off.png \" \"'"
+            "bash -c 'echo 0 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i $HOME/.config/dunst/icons/keyboard-backlight-off.png \" \"'"
         ),
         desc="Turn keyboard backlight down",
     ),
@@ -165,7 +165,7 @@ keys = [
         [],
         "F3",
         lazy.spawn(
-            "bash -c 'echo 1 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i /home/odd/.config/dunst/icons/keyboard-backlight-on.png \" \"'"
+            "bash -c 'echo 1 > /sys/class/leds/asus::kbd_backlight/brightness && notify-send -u normal -i $HOME/.config/dunst/icons/keyboard-backlight-on.png \" \"'"
         ),
         desc="Turn keyboard backlight up",
     ),
@@ -177,7 +177,7 @@ keys = [
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc="Open rofi drun mode"),
     # Key([mod], "b", lazy.spawn(os.path.expanduser("~/.config/rofi/applets/bin/powermenu.sh")), desc="Brightness control")
     # Run save_dotfiles.sh script
-    Key([mod, "shift"], "s", lazy.spawn("/home/odd/repos/dotfiles/save_dotfiles.sh")),
+    Key([mod, "shift"], "s", lazy.spawn("$HOME/repos/dotfiles/save_dotfiles.sh")),
     # i3lock Lock Screen
     Key([mod1], "l", lazy.spawn("i3lock-fancy")),
     # Close all windows in workspace "1"
@@ -244,7 +244,7 @@ keys = [
         desc="Close all windows in workspace 9",
     ),
     # Flame-Shot
-    Key([mod], "s", lazy.spawn("flameshot gui"), desc="Open Flame-Shot GUI"),
+    Key([mod], "s", lazy.spawn("sh -c 'pgrep -x flameshot >/dev/null || nohup flameshot >/dev/null 2>&1 & sleep 0.05 && flameshot gui'"), desc="Open Flame-Shot GUI"),
 ]
 
 # Add key bindings to switch VTs in Wayland.
@@ -529,7 +529,7 @@ screens = [
                 ),
                 widget.Spacer(length=9),
                 widget.TextBox(
-                    text="",
+                    text=" ",
                     # background="#00000000",
                     font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
                     fontsize=20,
@@ -583,7 +583,7 @@ screens = [
                     },
                     partition="/",
                     # format = '[{p}] {uf}{m} ({r:.0f}%)',
-                    format="{uf}{m} Free",
+                    format="{uf:.1f}{m} Free",
                     fmt=" DISK: {}",
                     visible_on_warn=False,
                     decorations=[
@@ -662,7 +662,7 @@ screens = [
                 # ),
                 widget.Spacer(length=9),
                 widget.TextBox(
-                    text=" ",
+                    text="󰥔 ",
                     # background="#00000000",
                     font="Iosevka Nerd Font, Noto Color Emoji, Symbola",
                     fontsize=16,

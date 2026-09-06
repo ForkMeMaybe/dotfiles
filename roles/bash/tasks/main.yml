@@ -6,7 +6,7 @@
   ansible.builtin.copy:
     src: .bash_profile
     dest: /home/{{ ansible_user }}/.bash_profile
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0644 # the owner can read and write the file, but other users can only read it
 
@@ -18,7 +18,7 @@
   ansible.builtin.copy:
     src: /home/{{ ansible_user }}/{{ item }}
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/bash/files/{{ item }}
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0644 # the owner can read and write the file, but other users can only read it
   loop:

@@ -2,6 +2,7 @@
   become: true
   tags:
     - zsh
+    - packages
   ansible.builtin.package:
     name:
       - zsh
@@ -11,6 +12,7 @@
   become: true
   tags:
     - zsh
+    - system
   ansible.builtin.user:
     name: "{{ ansible_user }}"
     shell: /bin/zsh
@@ -19,6 +21,7 @@
   become: false
   tags:
     - zsh
+    - packages
   ansible.builtin.shell:
     cmd: "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\" \"\" --unattended"
     creates: ~/.oh-my-zsh
@@ -27,6 +30,7 @@
   become: false
   tags:
     - zsh
+    - files
   ansible.builtin.git:
     repo: "https://github.com/zsh-users/zsh-autosuggestions"
     dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', true) }}/plugins/zsh-autosuggestions"
@@ -36,45 +40,38 @@
   become: false
   tags:
     - zsh
+    - files
   ansible.builtin.git:
     repo: "https://github.com/zsh-users/zsh-syntax-highlighting.git"
     dest: "{{ lookup('env', 'ZSH_CUSTOM') | default('~/.oh-my-zsh/custom', true) }}/plugins/zsh-syntax-highlighting"
     version: master
 
+- name: (zsh) copy config files
+  become: false
+  tags:
+    - zsh
+    - files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /home/{{ ansible_user }}/{{ item }}
+    # group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the owner can read and write the file, but other users can only read it
+  loop:
+    - .zprofile
+    - .zshrc
 
-
-
-
-
-
-
-
-# - name: (zsh) copy config files
-#   become: false
-#   tags:
-#     - zsh
-#     - files
-#   ansible.builtin.copy:
-#     src: "{{ item }}"
-#     dest: /home/{{ ansible_user }}/{{ item }}
-#     group: "users"
-#     owner: "{{ ansible_user }}"
-#     mode: 0644 # the owner can read and write the file, but other users can only read it
-#   loop:
-#     - .zprofile
-#     - .zshrc
-#
-# - name: (bash) save config files
-#   become: false
-#   tags:
-#     - save
-#     - save-zsh
-#   ansible.builtin.copy:
-#     src: /home/{{ ansible_user }}/{{ item }}
-#     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/zsh/files/{{ item }}
-#     group: "users"
-#     owner: "{{ ansible_user }}"
-#     mode: 0644 # the owner can read and write the file, but other users can only read it
-#   loop:
-#     - .zprofile
-#     - .zshrc
+- name: (zsh) save config files
+  become: false
+  tags:
+    - save
+    - save-zsh
+  ansible.builtin.copy:
+    src: /home/{{ ansible_user }}/{{ item }}
+    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/zsh/files/{{ item }}
+    # group: "users"
+    owner: "{{ ansible_user }}"
+    mode: 0644 # the owner can read and write the file, but other users can only read it
+  loop:
+    - .zprofile
+    - .zshrc

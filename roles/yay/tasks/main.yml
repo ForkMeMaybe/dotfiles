@@ -1,3 +1,23 @@
+- name: Check if yay is installed
+  tags:
+    - yay
+    - files
+    - packages
+  ansible.builtin.stat:
+    path: /usr/bin/yay
+  register: yay_binary
+
+- name: Allow user to run pacman without password for yay
+  tags:
+    - yay
+    - packages
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/10-yay
+    line: "{{ ansible_user }} ALL=(ALL) NOPASSWD: /usr/bin/pacman"
+    create: yes
+    mode: '0440'
+    validate: 'visudo -cf %s'
+
 - name: Clone yay repository
   become: false
   tags:
@@ -5,8 +25,9 @@
     - files
   git:
     repo: https://aur.archlinux.org/yay.git
-    dest: /home/{{ ansible_user }}/yay  # Clone to the user's home directory
+    dest: /home/{{ ansible_user }}/yay
     update: no
+  when: not yay_binary.stat.exists
 
 - name: Build and install yay
   become: false
@@ -15,4 +36,6 @@
     - packages
   command: makepkg -si --noconfirm
   args:
-    chdir: /home/{{ ansible_user }}/yay  # Change to the yay directory
+    chdir: /home/{{ ansible_user }}/yay
+    creates: /usr/bin/yay
+  when: not yay_binary.stat.exists

@@ -14,7 +14,7 @@
   tags:
     - qtile
     - packages
-  command: yay -S --noconfirm qtile-extras light
+  ansible.builtin.command: yay -S --noconfirm --needed --answerclean None --answerdiff None qtile-extras light
 
 - name: (qtile)  Remove cloned yay repository
   become: false
@@ -34,7 +34,7 @@
   ansible.builtin.copy:
     src: qtile
     dest: /home/{{ ansible_user }}/.config
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0755 # the owner of a file or directory can read, write, and execute it, while other users can only read and execute it
 
@@ -47,6 +47,6 @@
     src: /home/{{ ansible_user }}/.config/qtile
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/qtile/files/
     owner: "{{ ansible_user }}"
-    group: "users"
+    # group: "users"
     mode: 0755 # the owner of a file or directory can read, write, and execute it, while other users can only read and execute it
 

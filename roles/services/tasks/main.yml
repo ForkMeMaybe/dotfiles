@@ -1,15 +1,23 @@
-- name: (services) start services
+- name: (services) enable and start system services
   tags:
     - services
     - system
-  community.general.runit:
+  become: true
+  ansible.builtin.systemd:
     name: "{{ item }}"
     state: started
     enabled: true
-    loop:
-      - bluetooth
-      - pipewire
-      - wireplumber
-      - NetworkManager
-      - betterlockscreen@"{{ ansible_user }}"
-  
+  loop:
+    - bluetooth
+    - NetworkManager
+  ignore_errors: true
+
+- name: (services) enable betterlockscreen service if present
+  tags:
+    - services
+    - system
+  become: true
+  ansible.builtin.systemd:
+    name: "betterlockscreen@{{ ansible_user }}"
+    enabled: true
+  ignore_errors: true

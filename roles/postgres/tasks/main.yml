@@ -10,17 +10,12 @@
   tags:
     - postgres
     - system
+  become: yes
   become_user: postgres
-  command: initdb -D /var/lib/postgres/data
-  when: not ansible_facts['ansible_stat']['exists']
-  register: db_initialized
+  command: initdb --locale=C.UTF-8 -E UTF8 -D /var/lib/postgres/data
+  args:
+    creates: /var/lib/postgres/data/PG_VERSION
   ignore_errors: true
-
-- name: (postgres) Check if the database is initialized
-  stat:
-    path: /var/lib/postgres/data/postgresql.conf
-  register: ansible_stat
-
 
 - name: (postgres) Enable and start PostgreSQL service
   tags:

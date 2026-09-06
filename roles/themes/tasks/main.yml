@@ -3,21 +3,13 @@
   tags:
     - themes
     - files
-  ansible.builtin.copy:
-    src: themes
-    dest: /home/{{ ansible_user }}/
-    group: "users"
-    owner: "{{ ansible_user }}"
-    mode: 0644 # the owner can read and write the file, but other users can only read it
+  ansible.builtin.command:
+    cmd: "cp -rf {{ role_path }}/files/themes /home/{{ ansible_user }}/"
 
 - name: (themes) save config files
   become: false
   tags:
     - save
     - save-themes
-  ansible.builtin.copy:
-    src: /home/{{ ansible_user }}/themes
-    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/themes/files/
-    group: "users"
-    owner: "{{ ansible_user }}"
-    mode: 0644 # the owner can read and write the file, but other users can only read it
+  ansible.builtin.command:
+    cmd: "cp -rf /home/{{ ansible_user }}/themes {{ role_path }}/files/"

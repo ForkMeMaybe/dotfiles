@@ -7,6 +7,8 @@
     state: latest
   loop:
     - xorg
+    - xorg-server
+    - xorg-xinit
 
 - name: (xorg) copy xinitrc
   become: false
@@ -16,7 +18,7 @@
   ansible.builtin.copy:
     src: .xinitrc
     dest: /home/{{ ansible_user }}/.xinitrc
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0755 # the owner of a file or directory can read, write, and execute it, while other users can only read and execute it
 
@@ -52,7 +54,7 @@
     src: /home/{{ ansible_user }}/.xinitrc
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/xorg/files/.xinitrc
     owner: "{{ ansible_user }}"
-    group: "users"
+    # group: "users"
     mode: 0755 # the owner of a file or directory can read, write, and execute it, while other users can only read and execute it
 
 

@@ -4,8 +4,8 @@
     - yay
     - base
     - services
-    - git
-    - ssh
+    # - git
+    # - ssh
     - xorg
     - picom
     - bash

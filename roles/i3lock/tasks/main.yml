@@ -7,9 +7,8 @@
     state: latest
 
 - name: (i3lock-fancy) Install i3lock-fancy using yay
-  become: true
+  become: false
   tags:
-    - temp5
     - i3lock
     - packages
-  command: yay -S --noconfirm i3lock-fancy
+  ansible.builtin.command: yay -S --noconfirm --needed --answerclean None --answerdiff None i3lock-fancy-git

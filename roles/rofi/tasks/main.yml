@@ -11,21 +11,21 @@
   tags:
     - rofi
     - files
-  ansible.builtin.copy:
-    src: rofi
-    dest: /home/{{ ansible_user }}/.config/
-    group: "users"
-    owner: "{{ ansible_user }}"
-    mode: 0644 # the owner can read and write the file, but other users can only read it
+  ansible.builtin.command:
+    cmd: "cp -rf {{ role_path }}/files/rofi /home/{{ ansible_user }}/.config/"
+
+- name: (rofi) make rofi scripts executable
+  become: false
+  tags:
+    - rofi
+    - files
+  ansible.builtin.shell:
+    cmd: "chmod -R +x /home/{{ ansible_user }}/.config/rofi/scripts /home/{{ ansible_user }}/.config/rofi/launchers /home/{{ ansible_user }}/.config/rofi/powermenu /home/{{ ansible_user }}/.config/rofi/applets /home/{{ ansible_user }}/.config/rofi/theme_scripts"
 
 - name: (rofi) save config files
   become: false
   tags:
     - save
     - save-rofi
-  ansible.builtin.copy:
-    src: /home/{{ ansible_user }}/.config/rofi
-    dest: /home/{{ ansible_user }}/repos/dotfiles/roles/rofi/files/
-    group: "users"
-    owner: "{{ ansible_user }}"
-    mode: 0644 # the owner can read and write the file, but other users can only read it
+  ansible.builtin.command:
+    cmd: "cp -rf /home/{{ ansible_user }}/.config/rofi {{ role_path }}/files/"

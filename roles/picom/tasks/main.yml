@@ -14,7 +14,7 @@
   ansible.builtin.copy:
     src: picom
     dest: /home/{{ ansible_user }}/.config/
-    group: "users"
+    # group: "users"
     owner: "{{ ansible_user }}"
     mode: 0644 # the owner can read and write the file, but other users can only read it
 
@@ -27,5 +27,5 @@
     src: /home/{{ ansible_user }}/.config/picom
     dest: /home/{{ ansible_user }}/repos/dotfiles/roles/picom/files/
     owner: "{{ ansible_user }}"
-    group: "users"
+    # group: "users"
     mode: 0644 # the owner can read and write the file, but other users can only read it
