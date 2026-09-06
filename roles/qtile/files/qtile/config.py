@@ -293,10 +293,10 @@ for i in groups:
     )
 
 lay_config = {
-    "border_width": 0,
+    "border_width": 2,
     "margin": 9,
-    "border_focus": "3b4252",
-    "border_normal": "3b4252",
+    "border_focus": "#CAA9E0",
+    "border_normal": "#282738",
     "font": "FiraCode Nerd Font",
     "grow_amount": 2,
 }
@@ -691,9 +691,9 @@ bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
 floating_layout = layout.Floating(
-    border_focus="#1F1D2E",
-    border_normal="#1F1D2E",
-    border_width=0,
+    border_focus="#CAA9E0",
+    border_normal="#282738",
+    border_width=2,
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
         *layout.Floating.default_float_rules,
